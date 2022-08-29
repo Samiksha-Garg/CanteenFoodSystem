@@ -1,6 +1,6 @@
 import 'package:canteen_system/helper/constants.dart';
+import 'package:canteen_system/helper/size_config.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   const CustomBottomNavBar({Key? key}) : super(key: key);
@@ -18,10 +18,10 @@ class CustomBottomNavBar extends StatelessWidget {
             color: const Color(0xFFDADADA).withOpacity(0.1),
           ),
         ],
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(40),
-          topRight: Radius.circular(40),
-        ),
+        // borderRadius: const BorderRadius.only(
+        //   topLeft: Radius.circular(40),
+        //   topRight: Radius.circular(40),
+        // ),
       ),
       child: SafeArea(
           top: false,
@@ -29,57 +29,35 @@ class CustomBottomNavBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               IconButton(
-                icon: const Icon(Icons.home),
-                color: kTextColor,
-                onPressed: () {},
-              ),
-              IconButton(
-                icon: const Icon(
+                icon: Icon(
                   Icons.home_outlined,
                   color: kTextColor,
+                  size: getProportionateScreenWidth(30),
                 ),
                 onPressed: () {},
               ),
               IconButton(
                 onPressed: () {},
-                icon: const Icon(
+                icon: Icon(
                   Icons.category_outlined,
                   color: kTextColor,
+                  size: getProportionateScreenWidth(30),
                 ),
               ),
               IconButton(
                 onPressed: () {},
-                icon: const Icon(
-                  Icons.category,
-                  color: kTextColor,
-                ),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.shopping_cart_outlined,
-                  color: kTextColor,
-                ),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.shopping_cart,
-                  color: kTextColor,
-                ),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.mood_outlined,
-                  color: kTextColor,
-                ),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
+                icon: Icon(
                   Icons.mood,
                   color: kTextColor,
+                  size: getProportionateScreenWidth(30),
+                ),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.shopping_cart_outlined,
+                  color: kTextColor,
+                  size: getProportionateScreenWidth(30),
                 ),
               ),
             ],
