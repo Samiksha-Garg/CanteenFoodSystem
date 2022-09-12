@@ -1,6 +1,5 @@
 import 'package:canteen_system/helper/size_config.dart';
 import 'package:canteen_system/helper/theme.dart';
-import 'package:canteen_system/screens/OrderSummary/order_summary.dart';
 import 'package:canteen_system/screens/cartScreen/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
