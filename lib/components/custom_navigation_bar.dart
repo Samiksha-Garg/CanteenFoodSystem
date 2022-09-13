@@ -28,37 +28,47 @@ class CustomBottomNavBar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              IconButton(
-                icon: Icon(
-                  Icons.home_outlined,
-                  color: kTextColor,
-                  size: getProportionateScreenWidth(30),
-                ),
-                onPressed: () {},
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    icon: Icon(
+                      Icons.home_outlined,
+                      color: kTextColor,
+                      size: getProportionateScreenWidth(30),
+                    ),
+                    onPressed: () {},
+                  ),
+                  Text('Home')
+                ],
               ),
-              IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.category_outlined,
-                  color: kTextColor,
-                  size: getProportionateScreenWidth(30),
-                ),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    icon: Icon(
+                      Icons.logout,
+                      color: kTextColor,
+                      size: getProportionateScreenWidth(30),
+                    ),
+                    onPressed: () {},
+                  ),
+                  Text('Order')
+                ],
               ),
-              IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.mood,
-                  color: kTextColor,
-                  size: getProportionateScreenWidth(30),
-                ),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.shopping_cart_outlined,
-                  color: kTextColor,
-                  size: getProportionateScreenWidth(30),
-                ),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    icon: Icon(
+                      Icons.settings_outlined,
+                      color: kTextColor,
+                      size: getProportionateScreenWidth(30),
+                    ),
+                    onPressed: () {},
+                  ),
+                  Text('Settings')
+                ],
               ),
             ],
           )),

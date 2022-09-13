@@ -18,117 +18,117 @@ class CartTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(bottom: getProportionateScreenHeight(10)),
-        padding: EdgeInsets.symmetric(
-            horizontal: getProportionateScreenWidth(15),
-            vertical: getProportionateScreenHeight(10)),
-        width: double.infinity,
-        decoration: BoxDecoration(
-            color: kPrimaryLightColor, borderRadius: BorderRadius.circular(20)),
-        child: SizedBox(
-          height: getProportionateScreenHeight(90),
-          child: Expanded(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SizedBox(
-                  height: getProportionateScreenHeight(80),
-                  width: getProportionateScreenHeight(80),
-                  child: Image.asset(
-                    picture,
-                    fit: BoxFit.fill,
-                  ),
-                ),
-                SizedBox(
-                  width: getProportionateScreenWidth(10),
-                ),
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Center(
-                          child: Text(
-                            title,
-                            style: kHeadingTextStyle,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: getProportionateScreenWidth(10)),
-                          child: Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                  child: ElevatedButton(
-                                    onPressed: () {},
-                                    style: ElevatedButton.styleFrom(
-                                      primary: Colors.grey,
-                                      shape: const CircleBorder(),
-                                      padding: EdgeInsets.all(
-                                          getProportionateScreenWidth(2)),
-                                    ),
-                                    child: Expanded(
-                                      child: Text(
-                                        '-',
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize:
-                                                getProportionateScreenWidth(20),
-                                            fontWeight: FontWeight.w700),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Text(
-                                  qty,
-                                  style: kHeadingTextStyle,
-                                ),
-                                Expanded(
-                                  child: ElevatedButton(
-                                    onPressed: () {},
-                                    style: ElevatedButton.styleFrom(
-                                      primary: kSecondaryColor,
-                                      shape: const CircleBorder(),
-                                      padding: EdgeInsets.all(
-                                          getProportionateScreenWidth(2)),
-                                    ),
-                                    child: Text(
-                                      '+',
-                                      style: TextStyle(
-                                          fontSize:
-                                              getProportionateScreenWidth(20),
-                                          fontWeight: FontWeight.w700),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  width: getProportionateScreenWidth(10),
-                ),
-                Text(
-                  '₹ ' + price,
-                  style: kHeadingTextStyle,
-                )
-              ],
+      margin: EdgeInsets.only(bottom: getProportionateScreenHeight(10)),
+      height: getProportionateScreenHeight(130),
+      width: double.infinity,
+      decoration: BoxDecoration(
+          color: kPrimaryLightColor, borderRadius: BorderRadius.circular(20)),
+      child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+                height: getProportionateScreenHeight(130),
+                width: getProportionateScreenWidth(100),
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage(picture), fit: BoxFit.fill),
+                    borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        bottomLeft: Radius.circular(20)))),
+            SizedBox(
+              width: getProportionateScreenWidth(10),
             ),
-          ),
-        ));
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      title,
+                      style: kSubHeadingTextStyle,
+                    ),
+                    SizedBox(
+                      height: getProportionateScreenHeight(5),
+                    ),
+                    Text(
+                      '₹ ' + price + " /-",
+                      style: kSubHeadingTextStyle,
+                    ),
+                    SizedBox(
+                      height: getProportionateScreenHeight(5),
+                    ),
+                    Container(
+                        height: getProportionateScreenHeight(20),
+                        // width: getProportionateScreenWidth(100),
+                        decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(5)),
+                        constraints: BoxConstraints(
+                            minHeight: getProportionateScreenHeight(20),
+                            minWidth: getProportionateScreenWidth(100)),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                  elevation: 0,
+                                  primary: Colors.grey,
+                                  side: BorderSide.none
+                                  // side: BorderSide(color: Colors.black, width: 1),
+                                  ),
+                              child: Text(
+                                '-',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: getProportionateScreenHeight(15),
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            ),
+                            SizedBox(
+                              width: getProportionateScreenWidth(5),
+                            ),
+                            Text(
+                              qty,
+                              style: kSubHeadingTextStyle.copyWith(
+                                  color: Colors.black),
+                            ),
+                            SizedBox(
+                              width: getProportionateScreenWidth(5),
+                            ),
+                            ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                  elevation: 0,
+                                  primary: Colors.grey,
+                                  side: BorderSide.none
+                                  // side: BorderSide(color: Colors.black, width: 1),
+                                  ),
+                              child: Text(
+                                '+',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: getProportionateScreenHeight(15),
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            ),
+                          ],
+                        )),
+                  ],
+                ),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.all(10),
+              child: Icon(
+                Icons.delete,
+                color: Colors.white,
+              ),
+            )
+          ]),
+    );
   }
 }
-
-// Image.asset(
-//               "assets/images/Pasta.jpeg",
-//               fit: BoxFit.fill,
-//             ),
