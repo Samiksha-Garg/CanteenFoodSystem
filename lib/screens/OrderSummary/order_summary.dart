@@ -3,13 +3,16 @@ import 'package:canteen_system/components/custom_navigation_bar.dart';
 import 'package:canteen_system/helper/constants.dart';
 import 'package:canteen_system/helper/size_config.dart';
 import 'package:canteen_system/models/Cart.dart';
+import 'package:canteen_system/screens/OrderSummary/Components/bill_details.dart';
+import 'package:canteen_system/screens/OrderSummary/Components/order_details.dart';
+import 'package:canteen_system/screens/OrderSummary/Components/order_tile.dart';
 import 'package:canteen_system/screens/cartScreen/components/cart_tile.dart';
 import 'package:canteen_system/screens/cartScreen/components/place_order_card.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/material.dart';
 
-import 'Components/cancel_order_card.dart';
+import '../../components/custom_button.dart';
 
 class Order_Summary extends StatelessWidget {
   const Order_Summary({Key? key}) : super(key: key);
@@ -18,10 +21,7 @@ class Order_Summary extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      appBar: AppBar(
-          title: Text('Orders'),
-          centerTitle: true,
-          backgroundColor: Color.fromRGBO(48, 46, 59, 1)),
+      appBar: customAppBar("Order"),
       bottomNavigationBar: const CustomBottomNavBar(),
       body: Padding(
         padding: EdgeInsets.only(
@@ -34,297 +34,56 @@ class Order_Summary extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Center(
-              child: Padding(
-                padding: EdgeInsets.only(
-                  bottom: getProportionateScreenHeight(10.0),
-                  left: getProportionateScreenWidth(10.0),
-                  right: getProportionateScreenWidth(10.0),
-                  top: getProportionateScreenHeight(10.0),
+              child: Container(
+                width: getProportionateScreenWidth(400),
+                height: getProportionateScreenHeight(500),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: kSecondaryColor,
                 ),
-                child: Container(
-                  width: 300.0,
-                  height: 550.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Color.fromRGBO(30, 30, 42, 1),
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    top: getProportionateScreenHeight(10.0),
+                    bottom: getProportionateScreenHeight(10.0),
+                    left: getProportionateScreenWidth(15.0),
+                    right: getProportionateScreenWidth(15.0),
                   ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Container(
-                        height: 20.0,
-                        width: 230.0,
-                        child: Text(
-                          '1 item in this order',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 255, 255, 255),
-                              fontWeight: FontWeight.bold,
-                              fontSize: 17),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Text('1 item in this order',
+                            textAlign: TextAlign.center,
+                            style: kHeadingTextStyle),
+                        SizedBox(
+                          height: getProportionateScreenHeight(20),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                          top: getProportionateScreenHeight(10.0),
-                          bottom: getProportionateScreenHeight(10.0),
-                          left: getProportionateScreenWidth(15.0),
-                          right: getProportionateScreenWidth(15.0),
+                        OrderTile(),
+                        SizedBox(
+                          height: getProportionateScreenHeight(20),
                         ),
-                        child: Container(
-                            height: 90,
-                            width: 230.0,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Color.fromRGBO(68, 64, 77, 1),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
-                                  Container(
-                                    child: Image.asset(
-                                      "assets/images/burger.jpeg",
-                                      height: getProportionateScreenHeight(50),
-                                      width: getProportionateScreenWidth(40),
-                                      fit: BoxFit.fill,
-                                    ),
-                                  ),
-                                  Container(
-                                    child: Text(
-                                      "Super spicy chicken burger",
-                                      textAlign: TextAlign.start,
-                                      style: TextStyle(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    child: Text(
-                                      "104.0",
-                                      textAlign: TextAlign.start,
-                                      style: TextStyle(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )),
-                      ),
-                      Container(
-                          height: 130,
-                          width: 230,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Color.fromRGBO(68, 64, 77, 1),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              top: getProportionateScreenHeight(10.0),
-                              bottom: getProportionateScreenHeight(10.0),
-                              left: getProportionateScreenWidth(15.0),
-                              right: getProportionateScreenWidth(15.0),
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Container(
-                                  child: Text("Bill Details",
-                                      textAlign: TextAlign.left,
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold)),
-                                ),
-                                Container(
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Container(
-                                          child: Text(
-                                            "MRP",
-                                            textAlign: TextAlign.start,
-                                            style: TextStyle(
-                                              fontSize: 10,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ),
-                                        Container(
-                                          child: Text("104.0",
-                                              textAlign: TextAlign.end,
-                                              style: TextStyle(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.bold,
-                                              )),
-                                        ),
-                                      ]),
-                                ),
-                                Container(
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          child: Text("Product Discount",
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.bold,
-                                              )),
-                                        ),
-                                        Container(
-                                          child: Text("0.00",
-                                              textAlign: TextAlign.end,
-                                              style: TextStyle(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.bold,
-                                              )),
-                                        )
-                                      ]),
-                                ),
-                                Container(
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Container(
-                                          child: Text("Bill Total",
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.bold,
-                                              )),
-                                        ),
-                                        Container(
-                                          child: Text("104.0",
-                                              textAlign: TextAlign.end,
-                                              style: TextStyle(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.bold,
-                                              )),
-                                        )
-                                      ]),
-                                )
-                              ],
-                            ),
-                          )),
-                      Container(
-                          height: 130,
-                          width: 230,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Color.fromRGBO(68, 64, 77, 1),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              top: getProportionateScreenHeight(10.0),
-                              bottom: getProportionateScreenHeight(10.0),
-                              left: getProportionateScreenWidth(15.0),
-                              right: getProportionateScreenWidth(15.0),
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Container(
-                                  child: Text("Order Details",
-                                      textAlign: TextAlign.left,
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold)),
-                                ),
-                                Container(
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Container(
-                                          child: Text("Order ID",
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.bold,
-                                              )),
-                                        ),
-                                        Container(
-                                          child: Text("IGDTUW0057",
-                                              textAlign: TextAlign.end,
-                                              style: TextStyle(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.bold,
-                                              )),
-                                        ),
-                                      ]),
-                                ),
-                                Container(
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          child: Text("Payment Mode",
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.bold,
-                                              )),
-                                        ),
-                                        Container(
-                                          child: Text("Cash On Delivery",
-                                              textAlign: TextAlign.end,
-                                              style: TextStyle(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.bold,
-                                              )),
-                                        )
-                                      ]),
-                                ),
-                                Container(
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Container(
-                                          child: Text("Order Placed",
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.bold,
-                                              )),
-                                        ),
-                                        Container(
-                                          child: Text("Placed Yesterday,1:01pm",
-                                              textAlign: TextAlign.end,
-                                              style: TextStyle(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.bold,
-                                              )),
-                                        )
-                                      ]),
-                                )
-                              ],
-                            ),
-                          )),
-                    ],
+                        OrderTile(),
+                        SizedBox(
+                          height: getProportionateScreenHeight(20),
+                        ),
+                        OrderTile(),
+                        SizedBox(
+                          height: getProportionateScreenHeight(20),
+                        ),
+                        BillDetails(),
+                        SizedBox(
+                          height: getProportionateScreenHeight(20),
+                        ),
+                        OrderDetails(),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
-            Container(
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [CancelOrderCard()]),
+            CustomButton(
+              press: () {},
+              text: "Repeat Order",
             ),
           ],
         ),
