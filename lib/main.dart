@@ -2,6 +2,7 @@ import 'package:canteen_system/helper/size_config.dart';
 import 'package:canteen_system/helper/theme.dart';
 import 'package:canteen_system/screens/OrderSummary/order_summary.dart';
 import 'package:canteen_system/screens/cartScreen/cart_screen.dart';
+import 'package:canteen_system/screens/user_screen/user_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: theme(),
-      home: const CartScreen(),
+      home: const userScreen(),
       // home: const MyHomePage(title: 'Hello'),
     );
   }
