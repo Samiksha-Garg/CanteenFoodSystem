@@ -3,9 +3,6 @@ import 'package:canteen_system/components/custom_navigation_bar.dart';
 import 'package:canteen_system/helper/constants.dart';
 import 'package:canteen_system/helper/size_config.dart';
 import 'package:canteen_system/models/Cart.dart';
-import 'package:canteen_system/screens/OrderSummary/Components/bill_details.dart';
-import 'package:canteen_system/screens/OrderSummary/Components/order_details.dart';
-import 'package:canteen_system/screens/OrderSummary/Components/order_tile.dart';
 import 'package:canteen_system/screens/cartScreen/components/cart_tile.dart';
 import 'package:canteen_system/screens/cartScreen/components/place_order_card.dart';
 import 'package:flutter/material.dart';
@@ -14,129 +11,144 @@ import '../../components/custom_button.dart';
 import 'package:canteen_system/screens/complaint_page/Components/dropdown.dart';
 import 'package:canteen_system/screens/complaint_page/Components/textbox.dart';
 
-void main() {
-  runApp(const complaintPage());
-}
-
-class complaintPage extends StatelessWidget {
-  const complaintPage({super.key});
+class ComplaintPage extends StatelessWidget {
+  const ComplaintPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-          backgroundColor: Color.fromRGBO(48, 46, 59, 1),
-          body: Center(
+    SizeConfig().init(context);
+    return Scaffold(
+      backgroundColor: kPrimaryColor,
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.all(getProportionateScreenHeight(5)),
+          child: Center(
               child: Column(children: <Widget>[
-            const SizedBox(
-              width: 200.0,
-              height: 30.0,
+            Text(
+              ' REACH US',
+              style: kAppBarTextStyle.copyWith(
+                  fontSize: getProportionateScreenWidth(28)),
             ),
-            Container(
-              decoration:
-                  BoxDecoration(
-                    borderRadius: BorderRadius.circular(17),
-                    color: Color.fromRGBO(48,46,59, 1),),
-              margin: const EdgeInsets.all(25),
-              child: ElevatedButton(
-                child: const Text(
-                  ' REACH US',
-                  style: TextStyle(fontSize: 30.0, color: Colors.white),
-                ),
-                onPressed: () {},
-              ),
+            SizedBox(
+              height: getProportionateScreenHeight(5),
             ),
-            Container(
-                decoration: BoxDecoration(
-                    color: Color.fromRGBO(68, 64, 77, 1),
-                    borderRadius: BorderRadius.circular(17)),
-                width: 343,
-                child: Column(children: [
-                  SizedBox(
-                    width: 200,
-                    height: 40,
-                  ),
-                  const Text("Facing Any Issues?",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(fontSize: 20, 
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),),
-                  const SizedBox(
-                    width: 200.0,
-                    height: 30.0,
-                  ),
-                  const DropDown(),
-                  const SizedBox(
-                    width: 200.0,
-                    height: 30.0,
-                  ),
-                  Container(
-                    width: 285,
-                    height:30,
-                    margin: const EdgeInsets.all(25),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border.all(width: 2, color: Colors.grey),
-                      borderRadius: BorderRadius.all(Radius.circular(50)),
-                    ),
-                    child: Text("  Description",
-                        style: TextStyle(fontSize: 20, color: Colors.grey)),
-                  ),
-                  const SizedBox(
-                    width: 200.0,
-                    height: 20.0,
-                  ),
-                  Container(
-                    color: Colors.white,
-                    width: 282,
-                    
-                    child: TextField(
-                      style: TextStyle(color: Colors.white),
-                      decoration: const InputDecoration(
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black)),
-                          labelText: 'Please Enter few lines',
-                          hintText: 'Describe your issue '),
-                      cursorColor: Colors.black,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 200.0,
-                    height: 30.0,
-                  ),
-                  Container(
-                    margin: const EdgeInsets.all(25),
-                    decoration: BoxDecoration(
-                      color: Color.fromRGBO(68, 64, 77, 1),
-                      border: Border.all(width: 2, color: Color.fromRGBO(68, 64, 77, 1)),
-                      borderRadius: BorderRadius.all(Radius.circular(50)),
-                    ),
-                    child: ElevatedButton(
-                      //color: Colors.grey,
-                      
-                      onPressed: () {},
-                      child: const Text(
-                        'SUBMIT',
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          color: Colors.black,
+            Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: getProportionateScreenWidth(20)),
+              child: Container(
+                  decoration: BoxDecoration(
+                      color: kPrimaryLightColor,
+                      borderRadius: BorderRadius.circular(17)),
+                  width: double.infinity,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: getProportionateScreenHeight(10),
                           ),
-                      ),
-                    ),
-                  ),
-                ])),
-            const SizedBox(
-              width: 200.0,
-              height: 40.0,
+                          Text(
+                            "Facing Any Issues?",
+                            style: kAppBarTextStyle.copyWith(
+                                fontSize: getProportionateScreenWidth(15)),
+                          ),
+                          SizedBox(height: getProportionateScreenHeight(10)),
+                          const DropDown(),
+                          SizedBox(
+                            height: getProportionateScreenHeight(20),
+                          ),
+                          Center(
+                            child: Container(
+                              padding: EdgeInsets.all(5),
+                              width: getProportionateScreenWidth(250),
+
+                              // margin: const EdgeInsets.all(25),
+                              decoration: BoxDecoration(
+                                color: Color(0xffD6D5D7),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                              ),
+                              child: Text("  Description",
+                                  style: TextStyle(
+                                      fontSize: getProportionateScreenWidth(14),
+                                      color: Colors.black)),
+                            ),
+                          ),
+                          SizedBox(height: getProportionateScreenHeight(20)),
+                          Center(
+                            child: Container(
+                              padding: EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                  color: kPrimaryColor,
+                                  borderRadius: BorderRadius.circular(20)),
+                              width: getProportionateScreenWidth(250),
+                              child: TextField(
+                                style: TextStyle(color: Colors.white),
+                                minLines: 5,
+                                maxLines: 5,
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText:
+                                        'Please provide a short decription about the problem faced',
+                                    hintStyle: TextStyle(
+                                        fontSize:
+                                            getProportionateScreenWidth(10),
+                                        color: Colors.white,
+                                        fontStyle: FontStyle.italic)),
+                                cursorColor: Colors.white,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: getProportionateScreenHeight(10),
+                          ),
+                          Center(
+                              child: TextButton(
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Color(0xffD6D5D7)),
+                                shape: MaterialStateProperty.all<
+                                    RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20)),
+                                )),
+                            onPressed: () {},
+                            child: Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Text(
+                                "Submit",
+                                style: TextStyle(
+                                    fontSize: getProportionateScreenWidth(18),
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ),
+                          )),
+                          SizedBox(
+                            height: getProportionateScreenHeight(10),
+                          )
+                        ]),
+                  )),
             ),
-            Container(
-                decoration: BoxDecoration(
-                    color: Color.fromRGBO(68, 64, 77, 1),
-                    borderRadius: BorderRadius.circular(17)),
-                width: 343,
-                height: 150,
-                child: TextBox())
-          ]))),
+            SizedBox(
+              height: getProportionateScreenHeight(20),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: getProportionateScreenWidth(20)),
+              child: Container(
+                  padding: EdgeInsets.all(15),
+                  decoration: BoxDecoration(
+                      color: kPrimaryLightColor,
+                      borderRadius: BorderRadius.circular(17)),
+                  width: double.infinity,
+                  child: TextBox()),
+            )
+          ])),
+        ),
+      ),
     );
   }
 }
