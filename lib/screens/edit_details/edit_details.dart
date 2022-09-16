@@ -1,5 +1,3 @@
-
-
 import 'package:canteen_system/components/custom_app_bar.dart';
 import 'package:canteen_system/components/custom_navigation_bar.dart';
 import 'package:canteen_system/helper/constants.dart';
@@ -21,26 +19,17 @@ class EditDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      backgroundColor: Color.fromRGBO(48, 46, 59, 1),
+      backgroundColor: kPrimaryColor,
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(48, 46, 59, 1),
+        backgroundColor: kPrimaryColor,
         elevation: 3.0,
-        leading: IconButton(
-          icon: ImageIcon(
-            NetworkImage(
-                'https://www.flaticon.com/free-icon-font/angle-left_3916912'),
-            size: 30.0,
-          ),
-          onPressed: () {},
-        ),
-        
-        
+        leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
       ),
       bottomNavigationBar: const CustomBottomNavBar(),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(
-            top: getProportionateScreenHeight(40.0),
+            top: getProportionateScreenHeight(20),
             left: getProportionateScreenWidth(20.0),
             right: getProportionateScreenWidth(20.0),
             bottom: getProportionateScreenHeight(15.0),
@@ -49,8 +38,8 @@ class EditDetails extends StatelessWidget {
             child: Column(children: <Widget>[
               Container(
                 child: CircleAvatar(
-                  radius: 60.0,
-                  backgroundImage: NetworkImage(
+                  radius: getProportionateScreenWidth(50),
+                  backgroundImage: const NetworkImage(
                       'https://img.freepik.com/premium-vector/black-checker-chess-square-background_350503-56.jpg?w=2000'),
                 ),
               ),
@@ -59,37 +48,34 @@ class EditDetails extends StatelessWidget {
               ),
               Text(
                 'Change Photo',
-                style: TextStyle(
-                  fontSize: 12,
-                ),
+                style: kHeadingTextStyle.copyWith(
+                    fontSize: getProportionateScreenWidth(14)),
               ),
               SizedBox(
-                height: getProportionateScreenHeight(30),
+                height: getProportionateScreenHeight(20),
               ),
               Container(
                 alignment: Alignment.topLeft,
                 child: Text(
                   'Name',
                   textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Poppins',
-                  ),
+                  style: kHeadingTextStyle,
                 ),
               ),
               SizedBox(
-                height: getProportionateScreenHeight(20),
+                height: getProportionateScreenHeight(10),
               ),
-              Container(
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Aastha Pinhatiya',
-                    filled: true,
-                    fillColor: Colors.white,
-                  ),
+              TextField(
+                cursorColor: kPrimaryColor,
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: kPrimaryColor),
+                      borderRadius: BorderRadius.circular(10)),
+                  hintText: 'Aastha Pinhatiya',
+                  filled: true,
+                  fillColor: Colors.white,
                 ),
               ),
               SizedBox(
@@ -100,26 +86,24 @@ class EditDetails extends StatelessWidget {
                 child: Text(
                   'Email-ID',
                   textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Poppins',
-                  ),
+                  style: kHeadingTextStyle,
                 ),
               ),
               SizedBox(
                 height: getProportionateScreenHeight(20),
               ),
-              Container(
-                child: TextField(
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'aastha059btece21@igdtuw.ac.in',
-                    filled: true,
-                    fillColor: Colors.white,
-                  ),
+              TextField(
+                cursorColor: kPrimaryColor,
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: kPrimaryColor),
+                      borderRadius: BorderRadius.circular(10)),
+                  hintText: 'aastha059btece21@igdtuw.ac.in',
+                  filled: true,
+                  fillColor: Colors.white,
                 ),
               ),
               SizedBox(
@@ -130,33 +114,27 @@ class EditDetails extends StatelessWidget {
                 child: Text(
                   'Phone Number',
                   textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Poppins',
-                  ),
+                  style: kHeadingTextStyle,
                 ),
               ),
               SizedBox(
                 height: getProportionateScreenHeight(20),
               ),
-              Container(
-                
-                  child: TextField(
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: '9590499440',
-                      
-                      filled: true,
-                      fillColor: Colors.white,
-                      
-      
-                    ),
-                  ),
+              TextField(
+                cursorColor: kPrimaryColor,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: kPrimaryColor),
+                      borderRadius: BorderRadius.circular(10)),
+                  hintText: '9590499440',
+                  filled: true,
+                  fillColor: Colors.white,
                 ),
-                SizedBox(
+              ),
+              SizedBox(
                 height: getProportionateScreenHeight(20),
               ),
               Container(
@@ -164,54 +142,34 @@ class EditDetails extends StatelessWidget {
                 child: Text(
                   'Graduation Year',
                   textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Poppins',
-                  ),
+                  style: kHeadingTextStyle,
                 ),
               ),
               SizedBox(
                 height: getProportionateScreenHeight(20),
               ),
-              Container(
-                
-                  child: TextField(
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: '2025',
-                      
-                      filled: true,
-                      fillColor: Colors.white,
-                      
-      
-                    ),
-                  ),
+              TextField(
+                cursorColor: kPrimaryColor,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: kPrimaryColor),
+                      borderRadius: BorderRadius.circular(10)),
+                  hintText: '2025',
+                  filled: true,
+                  fillColor: Colors.white,
                 ),
-                SizedBox(
-                  height: getProportionateScreenHeight(20),
-                ),
-                Container(
-                  alignment: Alignment.center,
-                  height: getProportionateScreenHeight(80),
-                  width: getProportionateScreenWidth(200),
-                  decoration: BoxDecoration(
-                    color: Color.fromRGBO(43, 21, 89, 1),
-                
-                  ),
-                  child: Text(
-                    'Save Changes',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                )
-              
+              ),
+              SizedBox(
+                height: getProportionateScreenHeight(20),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: getProportionateScreenWidth(20)),
+                child: CustomButton(text: "Save Changes", press: () {}),
+              )
             ]),
           ),
         ),
