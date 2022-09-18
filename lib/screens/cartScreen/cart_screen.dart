@@ -28,6 +28,11 @@ class CartScreen extends StatelessWidget {
           price: 99.00,
           quantity: 1,
           image: "assets/images/pancake.jpg"),
+      CartItem(
+          product: "Blueberry Pancakes",
+          price: 99.00,
+          quantity: 1,
+          image: "assets/images/pancake.jpg"),
     ];
     SizeConfig().init(context);
     return Scaffold(
@@ -42,28 +47,31 @@ class CartScreen extends StatelessWidget {
                 left: getProportionateScreenWidth(20),
                 right: getProportionateScreenWidth(20),
                 bottom: getProportionateScreenHeight(15)),
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(
-                'Your Cart (3)',
-                style: kHeadingTextStyle,
-              ),
-              SizedBox(
-                height: getProportionateScreenHeight(10),
-              ),
-              Expanded(
-                child: ListView.builder(
-                    itemCount: items.length,
-                    itemBuilder: (context, index) {
-                      return CartTile(
-                        qty: items[index].quantity.toString(),
-                        picture: items[index].image,
-                        title: items[index].product,
-                        price: items[index].price.toString(),
-                      );
-                    }),
-              ),
-            ]),
+            child: SingleChildScrollView(
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Your Cart (3)',
+                      style: kHeadingTextStyle,
+                    ),
+                    SizedBox(
+                      height: getProportionateScreenHeight(10),
+                    ),
+                    ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: items.length,
+                        itemBuilder: (context, index) {
+                          return CartTile(
+                            qty: items[index].quantity.toString(),
+                            picture: items[index].image,
+                            title: items[index].product,
+                            price: items[index].price.toString(),
+                          );
+                        }),
+                  ]),
+            ),
           ),
           // child:
         ),

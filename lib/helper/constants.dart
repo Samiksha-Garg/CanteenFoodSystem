@@ -8,6 +8,7 @@ const kTextColor = Color(0xFFffffff);
 
 final kAppBarTextStyle = TextStyle(
     fontSize: getProportionateScreenHeight(20), fontWeight: FontWeight.w700);
-
 final kHeadingTextStyle = TextStyle(
     fontSize: getProportionateScreenWidth(16), fontWeight: FontWeight.w600);
+final kSubHeadingTextStyle = TextStyle(
+    fontSize: getProportionateScreenWidth(15), fontWeight: FontWeight.w500);
