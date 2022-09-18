@@ -1,5 +1,6 @@
 import 'package:canteen_system/helper/size_config.dart';
 import 'package:canteen_system/helper/theme.dart';
+import 'package:canteen_system/screens/OrderSummary/order_summary.dart';
 import 'package:canteen_system/screens/cartScreen/cart_screen.dart';
 import 'package:canteen_system/screens/failureScreen/failure_screen.dart';
 import 'package:canteen_system/screens/itemScreen/item_screen.dart';
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: theme(),
-        home: const OrderStatus()
+        home: const Order_Summary()
+        // const OrderStatus()
         // const FailureScreen()
         // const CartScreen()
         //const ItemScreen()
