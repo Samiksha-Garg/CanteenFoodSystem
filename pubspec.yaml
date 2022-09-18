@@ -50,6 +50,7 @@ dev_dependencies:
   google_sign_in: ^5.4.1 # for Google sign in Auth Services
   cloud_firestore: ^3.4.6 # for Firebase Cloud Firestore Services
   flutter_svg: ^1.1.4 # help us to use SVG in our app
+  font_awesome_flutter: ^10.2.1
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
