@@ -7,6 +7,7 @@ import 'package:canteen_system/screens/itemScreen/item_screen.dart';
 import 'package:canteen_system/screens/statusScreen/status_screen.dart';
 import 'package:canteen_system/screens/complaint_page/complaint_page.dart';
 import 'package:canteen_system/screens/payment/payment.dart';
+import 'package:canteen_system/screens/user/user.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -24,7 +25,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false, theme: theme(), home: const Payment()
+        debugShowCheckedModeBanner: false, theme: theme(), home: const User()
+        // const Payment()
         // const ComplaintPage()
         // const Order_Summary()
         // const OrderStatus()
