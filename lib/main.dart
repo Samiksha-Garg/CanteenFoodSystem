@@ -5,6 +5,7 @@ import 'package:canteen_system/screens/cartScreen/cart_screen.dart';
 import 'package:canteen_system/screens/failureScreen/failure_screen.dart';
 import 'package:canteen_system/screens/itemScreen/item_screen.dart';
 import 'package:canteen_system/screens/statusScreen/status_screen.dart';
+import 'package:canteen_system/screens/complaint_page/complaint_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -24,7 +25,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: theme(),
-        home: const Order_Summary()
+        home: const ComplaintPage()
+        // const Order_Summary()
         // const OrderStatus()
         // const FailureScreen()
         // const CartScreen()
