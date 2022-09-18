@@ -2,6 +2,7 @@ import 'package:canteen_system/helper/size_config.dart';
 import 'package:canteen_system/helper/theme.dart';
 import 'package:canteen_system/screens/cartScreen/cart_screen.dart';
 import 'package:canteen_system/screens/failureScreen/failure_screen.dart';
+import 'package:canteen_system/screens/itemScreen/item_screen.dart';
 import 'package:canteen_system/screens/statusScreen/status_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -23,9 +24,11 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: theme(),
         home: const OrderStatus()
-        //const FailureScreen()
-        // const CartScreen(),
-        // home: const MyHomePage(title: 'Hello'),
+        // const FailureScreen()
+        // const CartScreen()
+        //const ItemScreen()
+        //const CartScreen(),
+
         );
   }
 }
