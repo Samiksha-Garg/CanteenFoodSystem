@@ -2,6 +2,8 @@ import 'dart:ffi';
 
 import 'package:canteen_system/components/custom_app_bar.dart';
 import 'package:canteen_system/components/custom_navigation_bar.dart';
+import 'package:canteen_system/helper/enums.dart';
+import 'package:canteen_system/screens/categoryScreens/category_screen.dart';
 import "package:flutter/material.dart";
 
 import '../../helper/size_config.dart';
@@ -88,15 +90,24 @@ class Home extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            Container(
-              height: getProportionateScreenHeight(100),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.deepPurple[100],
-                borderRadius: BorderRadius.circular(15),
-                image: const DecorationImage(
-                  image: AssetImage('assets/images/Group 2.png'),
-                  fit: BoxFit.fill,
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            CategoryScreen(category: Categories.Beverages)));
+              },
+              child: Container(
+                height: getProportionateScreenHeight(100),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.deepPurple[100],
+                  borderRadius: BorderRadius.circular(15),
+                  image: const DecorationImage(
+                    image: AssetImage('assets/images/Group 2.png'),
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
             ),

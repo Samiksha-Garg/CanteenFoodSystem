@@ -37,23 +37,6 @@ AppBar customAppBar(String title) {
           onPressed: () {},
         ),
       ),
-      // Padding(
-      //   padding: const EdgeInsets.all(8),
-      //   child: CircleAvatar(
-      //       backgroundColor: kTextColor,
-      //       radius: getProportionateScreenWidth(20),
-      //       child: CircleAvatar(
-      //         backgroundColor: kSecondaryColor,
-      //         radius: getProportionateScreenWidth(16),
-      //         child: IconButton(
-      //             onPressed: () {},
-      //             icon: Icon(
-      //               Icons.person,
-      //               color: kTextColor,
-      //               size: getProportionateScreenWidth(18),
-      //             )),
-      //       )),
-      // )
     ],
   );
 }
