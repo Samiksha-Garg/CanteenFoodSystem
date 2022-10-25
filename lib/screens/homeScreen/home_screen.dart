@@ -11,7 +11,6 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Scaffold(
         backgroundColor: Colors.black87,
         appBar: customAppBar("MENU"),

@@ -1,30 +1,31 @@
 import 'package:canteen_system/components/custom_navigation_bar.dart';
 import 'package:canteen_system/helper/constants.dart';
 import 'package:canteen_system/helper/size_config.dart';
+import 'package:canteen_system/providers/auth_service.dart';
+import 'package:canteen_system/providers/user_account.dart';
+import 'package:canteen_system/screens/complaint_page/Components/dropdown.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/src/consumer.dart';
+import 'package:provider/src/provider.dart';
 
 class User extends StatelessWidget {
   const User({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
-    return SafeArea(
-      child: Scaffold(
-        bottomNavigationBar: const CustomBottomNavBar(),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+    return Scaffold(
+      body: SafeArea(
+        child: Consumer<UserProvider>(builder: (context, userProvider, _) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               SizedBox(
                 height: getProportionateScreenHeight(20),
               ),
-              Container(
-                child: Text(
-                  'NAME',
-                  style: kAppBarTextStyle.copyWith(
-                      fontSize: getProportionateScreenWidth(30)),
-                ),
+              Text(
+                userProvider.user.name,
+                style: kAppBarTextStyle.copyWith(
+                    fontSize: getProportionateScreenWidth(30)),
               ),
               SizedBox(
                 height: getProportionateScreenHeight(10),
@@ -91,7 +92,7 @@ class User extends StatelessWidget {
                   width: double.infinity,
                   color: kSecondaryColor,
                   child: Text(
-                    'Celestial Biscuits IGDTUW',
+                    'Change Password ',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,
@@ -105,16 +106,22 @@ class User extends StatelessWidget {
                 height: 1.0,
               ),
               Expanded(
-                child: Container(
-                  alignment: Alignment.center,
-                  width: double.infinity,
-                  color: kSecondaryColor,
-                  child: Text(
-                    'Change Password ',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: getProportionateScreenWidth(20),
+                child: InkWell(
+                  onTap: () {
+                    Provider.of<Authentication>(context, listen: false)
+                        .signOut();
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: double.infinity,
+                    color: kSecondaryColor,
+                    child: Text(
+                      'Log Out',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: getProportionateScreenWidth(20),
+                      ),
                     ),
                   ),
                 ),
@@ -180,10 +187,14 @@ class User extends StatelessWidget {
                   ),
                 ),
               ),
+              SizedBox(
+                height: getProportionateScreenHeight(10),
+              )
             ],
-          ),
-        ),
+          );
+        }),
       ),
+      bottomNavigationBar: CustomBottomNavBar(),
     );
   }
 }

@@ -11,6 +11,13 @@ class Authentication with ChangeNotifier {
   late User _user;
   var firebaseFirestore = FirebaseFirestore.instance;
 
+  set setStatus(Status stat) {
+    _status = stat;
+    notifyListeners();
+  }
+
+  User get user => _user;
+
   Authentication.instance() : _auth = FirebaseAuth.instance {
     _auth.authStateChanges().listen(_onAuthStateChanged);
   }
@@ -58,7 +65,7 @@ class Authentication with ChangeNotifier {
       _status = Status.Unauthenticated;
     } else {
       _user = firebaseUser;
-      _status = Status.Authenticated;
+      _status = Status.Fetching;
     }
 
     notifyListeners();

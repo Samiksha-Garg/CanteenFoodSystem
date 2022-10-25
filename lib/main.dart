@@ -3,8 +3,10 @@ import 'package:canteen_system/helper/size_config.dart';
 import 'package:canteen_system/helper/theme.dart';
 import 'package:canteen_system/providers/auth_service.dart';
 import 'package:canteen_system/providers/bottom_navigation_bar.dart';
+import 'package:canteen_system/providers/user_account.dart';
 import 'package:canteen_system/screens/OrderSummary/order_summary.dart';
 import 'package:canteen_system/screens/authenticationScreen/choice_screen.dart';
+import 'package:canteen_system/screens/authenticationScreen/fetching_info_screen.dart';
 import 'package:canteen_system/screens/authenticationScreen/login_screen.dart';
 import 'package:canteen_system/screens/authenticationScreen/sign_up_screen.dart';
 import 'package:canteen_system/screens/cartScreen/cart_screen.dart';
@@ -49,6 +51,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<BottomNavigationBarProvider>(
           create: (context) => BottomNavigationBarProvider(),
         ),
+        ChangeNotifierProvider<UserProvider>(
+          create: (context) => UserProvider(),
+        ),
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -67,7 +72,7 @@ class MyApp extends StatelessWidget {
                   return const SplashScreen();
 
                 case Status.Fetching:
-                  return const SplashScreen();
+                  return const FetchingInfo();
 
                 case Status.Unauthenticated:
                   return const AuthChoiceScreen();
