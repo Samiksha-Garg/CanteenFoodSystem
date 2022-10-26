@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:canteen_system/screens/itemScreen/item_screen.dart';
 
 import '../../components/loading_bar.dart';
 import '../../helper/size_config.dart';
@@ -22,7 +23,9 @@ class CategoryItem extends StatelessWidget {
                 left: getProportionateScreenWidth(10),
                 right: getProportionateScreenWidth(10)),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                showItemSheet(context);
+              },
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
