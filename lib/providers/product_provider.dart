@@ -12,11 +12,11 @@ class ProductProvider with ChangeNotifier {
   //   ProductModel productModel = ProductModel(
   //       pId: "",
   //       imageUrl:
-  //           "https://www.tastyrewards.com/sites/default/files/2021-03/Packshots_Magic_Masala.jpg",
-  //       mrp: 20,
-  //       name: "Magic Masala",
-  //       brand: "Lays",
-  //       category: Categories.PackedFood);
+  //           "https://media-cldnry.s-nbcnews.com/image/upload/newscms/2019_21/2870431/190524-classic-american-cheeseburger-ew-207p.jpg",
+  //       mrp: 60,
+  //       name: "Burger",
+  //       brand: "IGDTUW",
+  //       category: Categories.CookedFood);
   //   await _firestore.collection('products').doc().set(productModel.toMap());
   // }
 }

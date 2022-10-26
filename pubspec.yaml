@@ -54,6 +54,7 @@ dev_dependencies:
   email_validator: ^2.1.17 #for validating email
   animated_text_kit: ^4.2.2 #for animated text
   modal_progress_hud_nsn: ^0.3.0 # for Loading effects, etc
+  cached_network_image: 3.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
