@@ -11,9 +11,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
 
 class CategoryScreen extends StatelessWidget {
-  const CategoryScreen({Key? key, required this.category}) : super(key: key);
+  const CategoryScreen(
+      {Key? key, required this.category, required this.products})
+      : super(key: key);
 
   final Categories category;
+  final List<ProductModel> products;
 
   @override
   Widget build(BuildContext context) {
@@ -60,127 +63,22 @@ class CategoryScreen extends StatelessWidget {
           ],
         ),
         body: Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: getProportionateScreenWidth(10),
-                vertical: getProportionateScreenHeight(20)),
-            child: GridView.count(
-              childAspectRatio: 0.75,
+          padding: EdgeInsets.only(left: getProportionateScreenWidth(15)),
+          child: GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
+              childAspectRatio: 0.75,
               crossAxisSpacing: getProportionateScreenWidth(15),
               mainAxisSpacing: getProportionateScreenHeight(10),
-              children: [
-                InkWell(
-                    onTap: () async {
-                      // Provider.of<ProductProvider>(context, listen:  false).
-                    },
-                    child: CategoryItem(
-                      product: ProductModel(
-                          pId: "",
-                          imageUrl:
-                              "https://media-cldnry.s-nbcnews.com/image/upload/newscms/2019_21/2870431/190524-classic-american-cheeseburger-ew-207p.jpg",
-                          mrp: 60,
-                          name: "Burger",
-                          brand: "IGDTUW",
-                          category: Categories.CookedFood),
-                    )
-                    // Container(
-                    //   decoration: BoxDecoration(
-                    //       borderRadius: BorderRadius.circular(20),
-                    //       image: DecorationImage(
-                    //           image: AssetImage(
-                    //             "assets/images/tile.jpg",
-                    //           ),
-                    //           fit: BoxFit.fill)),
-                    // ),
-                    ),
-                InkWell(
-                    onTap: () async {
-                      // Provider.of<ProductProvider>(context, listen:  false).
-                    },
-                    child: CategoryItem(
-                      product: ProductModel(
-                          pId: "",
-                          imageUrl:
-                              "https://www.tastyrewards.com/sites/default/files/2021-03/Packshots_Magic_Masala.jpg",
-                          mrp: 20,
-                          name: "Magic Masala",
-                          brand: "Lays",
-                          category: Categories.PackedFood),
-                    )
-                    // Container(
-                    //   decoration: BoxDecoration(
-                    //       borderRadius: BorderRadius.circular(20),
-                    //       image: DecorationImage(
-                    //           image: AssetImage(
-                    //             "assets/images/tile.jpg",
-                    //           ),
-                    //           fit: BoxFit.fill)),
-                    // ),
-                    ),
-                // Container(
-                //   decoration: BoxDecoration(
-                //       borderRadius: BorderRadius.circular(20),
-                //       image: DecorationImage(
-                //           image: AssetImage(
-                //             "assets/images/tile.jpg",
-                //           ),
-                //           fit: BoxFit.fill)),
-                // ),
-                // Container(
-                //   decoration: BoxDecoration(
-                //       borderRadius: BorderRadius.circular(20),
-                //       image: DecorationImage(
-                //           image: AssetImage(
-                //             "assets/images/tile.jpg",
-                //           ),
-                //           fit: BoxFit.fill)),
-                // ),
-                // Container(
-                //   decoration: BoxDecoration(
-                //       borderRadius: BorderRadius.circular(20),
-                //       image: DecorationImage(
-                //           image: AssetImage(
-                //             "assets/images/tile.jpg",
-                //           ),
-                //           fit: BoxFit.fill)),
-                // ),
-                // Container(
-                //   decoration: BoxDecoration(
-                //       borderRadius: BorderRadius.circular(20),
-                //       image: DecorationImage(
-                //           image: AssetImage(
-                //             "assets/images/tile.jpg",
-                //           ),
-                //           fit: BoxFit.fill)),
-                // ),
-                // Container(
-                //   decoration: BoxDecoration(
-                //       borderRadius: BorderRadius.circular(20),
-                //       image: DecorationImage(
-                //           image: AssetImage(
-                //             "assets/images/tile.jpg",
-                //           ),
-                //           fit: BoxFit.fill)),
-                // ),
-                // Container(
-                //   decoration: BoxDecoration(
-                //       borderRadius: BorderRadius.circular(20),
-                //       image: DecorationImage(
-                //           image: AssetImage(
-                //             "assets/images/tile.jpg",
-                //           ),
-                //           fit: BoxFit.fill)),
-                // ),
-                // Container(
-                //   decoration: BoxDecoration(
-                //       borderRadius: BorderRadius.circular(20),
-                //       image: DecorationImage(
-                //           image: AssetImage(
-                //             "assets/images/tile.jpg",
-                //           ),
-                //           fit: BoxFit.fill)),
-                // ),
-              ],
-            )));
+            ),
+            padding: EdgeInsets.only(
+                right: getProportionateScreenWidth(20),
+                top: getProportionateScreenWidth(10)),
+            itemCount: products.length,
+            itemBuilder: (BuildContext context, int index) {
+              return CategoryItem(product: products[index]);
+            },
+          ),
+        ));
   }
 }

@@ -5,8 +5,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ProductProvider with ChangeNotifier {
   bool isLoading = true;
-  List<ProductModel> products = [];
+  List<ProductModel> _products = [];
   final _firestore = FirebaseFirestore.instance;
+
+  List<ProductModel> get products => _products;
 
   // Future<void> addToDb() async {
   //   ProductModel productModel = ProductModel(
@@ -19,4 +21,39 @@ class ProductProvider with ChangeNotifier {
   //       category: Categories.CookedFood);
   //   await _firestore.collection('products').doc().set(productModel.toMap());
   // }
+
+  Future<void> fetchAllProducts() async {
+    _products.clear();
+    isLoading = false;
+    notifyListeners();
+
+    await _firestore.collection('products').get().then((value) {
+      for (var item in value.docs) {
+        var eachProduct = ProductModel.fromMap(item.data());
+
+        _products.add(eachProduct);
+      }
+      isLoading = false;
+      notifyListeners();
+    }).catchError((e) {
+      print("Error in fetchin products from firestore $e ");
+    });
+  }
+
+  Future<List<ProductModel>> fetchCategoriesProduct(Categories category) async {
+    List<ProductModel> products = [];
+    isLoading = true;
+    notifyListeners();
+
+    for (ProductModel productModel in _products) {
+      if (productModel.category == category) {
+        products.add(productModel);
+      }
+    }
+
+    isLoading = false;
+    notifyListeners();
+
+    return products;
+  }
 }

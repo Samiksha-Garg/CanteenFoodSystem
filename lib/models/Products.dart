@@ -26,4 +26,17 @@ class ProductModel {
       'category': category.name
     };
   }
+
+  factory ProductModel.fromMap(Map<String, dynamic> map) {
+    Categories category =
+        Categories.values.firstWhere((e) => e.name == map['category']);
+    return ProductModel(
+      pId: map['pId'],
+      name: map['name'],
+      mrp: map['mrp'].toDouble(),
+      imageUrl: map['imageUrl'],
+      brand: map['brand'],
+      category: category,
+    );
+  }
 }
