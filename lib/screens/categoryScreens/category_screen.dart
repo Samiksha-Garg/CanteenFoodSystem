@@ -3,7 +3,10 @@ import 'package:canteen_system/components/custom_navigation_bar.dart';
 import 'package:canteen_system/helper/constants.dart';
 import 'package:canteen_system/helper/enums.dart';
 import 'package:canteen_system/helper/size_config.dart';
+import 'package:canteen_system/providers/product_provider.dart';
+import 'package:canteen_system/screens/complaint_page/Components/dropdown.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
 
 class CategoryScreen extends StatelessWidget {
   const CategoryScreen({Key? key, required this.category}) : super(key: key);
@@ -63,14 +66,19 @@ class CategoryScreen extends StatelessWidget {
               crossAxisSpacing: getProportionateScreenWidth(15),
               mainAxisSpacing: getProportionateScreenHeight(10),
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      image: DecorationImage(
-                          image: AssetImage(
-                            "assets/images/tile.jpg",
-                          ),
-                          fit: BoxFit.fill)),
+                InkWell(
+                  onTap: () async {
+                    // Provider.of<ProductProvider>(context, listen:  false).
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        image: DecorationImage(
+                            image: AssetImage(
+                              "assets/images/tile.jpg",
+                            ),
+                            fit: BoxFit.fill)),
+                  ),
                 ),
                 Container(
                   decoration: BoxDecoration(
