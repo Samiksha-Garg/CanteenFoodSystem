@@ -1,6 +1,9 @@
+import 'package:canteen_system/providers/bottom_navigation_bar.dart';
+import 'package:canteen_system/screens/complaint_page/Components/dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/src/provider.dart';
 
 import '../helper/enums.dart';
 
@@ -9,11 +12,16 @@ class Authentication with ChangeNotifier {
   Status _status = Status.Uninitialized;
   Status get status => _status;
   late User _user;
+  late BuildContext _context;
   var firebaseFirestore = FirebaseFirestore.instance;
 
   set setStatus(Status stat) {
     _status = stat;
     notifyListeners();
+  }
+
+  set setBuildContext(BuildContext context) {
+    _context = context;
   }
 
   User get user => _user;
@@ -25,6 +33,8 @@ class Authentication with ChangeNotifier {
   Future signOut() async {
     _auth.signOut();
     _status = Status.Unauthenticated;
+    Provider.of<BottomNavigationBarProvider>(_context, listen: false)
+        .toggleTabs(0);
     notifyListeners();
   }
 

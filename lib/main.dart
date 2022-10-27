@@ -62,6 +62,7 @@ class MyApp extends StatelessWidget {
           home: Consumer<Authentication>(
             builder: (context, auth, _) {
               SizeConfig().init(context);
+              auth.setBuildContext = context;
               switch (auth.status) {
                 case Status.Uninitialized:
                   return const SplashScreen();

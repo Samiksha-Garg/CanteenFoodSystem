@@ -1,4 +1,5 @@
 import 'package:canteen_system/helper/enums.dart';
+import 'package:canteen_system/providers/auth_service.dart';
 import 'package:canteen_system/providers/bottom_navigation_bar.dart';
 import 'package:canteen_system/providers/product_provider.dart';
 import 'package:canteen_system/screens/OrderSummary/Components/order_details.dart';
@@ -46,6 +47,7 @@ class _LandingHomeScreenState extends State<LandingHomeScreen> {
 
   void fetch() {
     var productProvider = Provider.of<ProductProvider>(context, listen: false);
+
     productProvider.fetchAllProducts();
   }
 
