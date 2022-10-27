@@ -24,7 +24,7 @@ class CategoryItem extends StatelessWidget {
                 right: getProportionateScreenWidth(10)),
             child: InkWell(
               onTap: () {
-                showItemSheet(context);
+                showItemSheet(context, product);
               },
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,7 +92,7 @@ class CategoryItem extends StatelessWidget {
                                 bottom: 3,
                                 right: getProportionateScreenWidth(5)),
                             constraints: BoxConstraints(),
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.shopping_bag_outlined,
                               color: kTextColor,
                             ),
