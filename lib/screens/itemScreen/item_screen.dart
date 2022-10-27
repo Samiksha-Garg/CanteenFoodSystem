@@ -4,11 +4,13 @@ import 'package:canteen_system/components/custom_navigation_bar.dart';
 import 'package:canteen_system/components/loading_bar.dart';
 import 'package:canteen_system/helper/constants.dart';
 import 'package:canteen_system/models/Products.dart';
+import 'package:canteen_system/providers/cart_provider.dart';
 import 'package:canteen_system/screens/itemScreen/components/ratings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:provider/src/provider.dart';
 
 import '../../helper/size_config.dart';
 
@@ -247,7 +249,13 @@ class _ItemWidgetState extends State<ItemWidget> {
                 Padding(
                   padding: EdgeInsets.symmetric(
                       horizontal: getProportionateScreenWidth(50)),
-                  child: CustomButton(text: "Add to Cart", press: () {}),
+                  child: CustomButton(
+                      text: "Add to Cart",
+                      press: () {
+                        Provider.of<CartProvider>(context, listen: false)
+                            .addToCart(widget.productModel, quantity: qty);
+                        Navigator.pop(context);
+                      }),
                 ),
                 SizedBox(
                   height: getProportionateScreenHeight(15),

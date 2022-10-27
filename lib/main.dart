@@ -3,6 +3,7 @@ import 'package:canteen_system/helper/size_config.dart';
 import 'package:canteen_system/helper/theme.dart';
 import 'package:canteen_system/providers/auth_service.dart';
 import 'package:canteen_system/providers/bottom_navigation_bar.dart';
+import 'package:canteen_system/providers/cart_provider.dart';
 import 'package:canteen_system/providers/product_provider.dart';
 import 'package:canteen_system/providers/user_account.dart';
 import 'package:canteen_system/screens/OrderSummary/order_summary.dart';
@@ -54,6 +55,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<ProductProvider>(
           create: (context) => ProductProvider(),
+        ),
+        ChangeNotifierProvider<CartProvider>(
+          create: (context) => CartProvider(),
         ),
       ],
       child: MaterialApp(
