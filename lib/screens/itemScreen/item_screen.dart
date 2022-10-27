@@ -24,15 +24,18 @@ class ItemScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            RaisedButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
+            ElevatedButton(
               onPressed: () {
                 showItemSheet(context);
               },
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
+              
               padding:
                   EdgeInsets.only(left: 30, right: 30, top: 15, bottom: 15),
-              color: Colors.pink,
+              backgroundColor: Colors.pink,
+              ),
               child: Text(
                 'View Bottom Sheet',
                 style: TextStyle(
