@@ -26,13 +26,18 @@ environment:
 # dependencies can be manually updated by changing the version numbers below to
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
-dependencies:
-  flutter:
-    sdk: flutter
+# dependencies:
+#   flutter:
+#     sdk: flutter
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
+#   # The following adds the Cupertino Icons font to your application.
+#   # Use with the CupertinoIcons class for iOS style icons.
+#   cupertino_icons: ^1.0.2
+#   shared_preference: ^2.0.8
+#   path_provider: ^2.0.2
+#   sqflite: ^2.0.0+4
+
+#   provider: ^6.0.1
 
 dev_dependencies:
   flutter_test:
@@ -55,6 +60,7 @@ dev_dependencies:
   animated_text_kit: ^4.2.2 #for animated text
   modal_progress_hud_nsn: ^0.3.0 # for Loading effects, etc
   cached_network_image: 3.0.0
+  badges: ^2.0.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
