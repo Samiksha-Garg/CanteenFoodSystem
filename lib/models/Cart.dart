@@ -19,14 +19,13 @@ class CartItem {
       'cId': cId,
       'quantity': quantity,
       'choosenCustomisation': choosenCustomisation,
-      'product': product.pId
+      'product': product.toMap()
     };
   }
 
-  factory CartItem.fromMap(
-      Map<String, dynamic> map, ProductModel productModel) {
+  factory CartItem.fromMap(Map<String, dynamic> map) {
     return CartItem(
-        product: productModel,
+        product: ProductModel.fromMap(map['product']),
         quantity: map['quantity'],
         cId: map['cId'],
         choosenCustomisation: map['choosenCustomisation']);

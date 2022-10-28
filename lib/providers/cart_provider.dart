@@ -19,7 +19,11 @@ class CartProvider with ChangeNotifier {
     String cId = productModel.pId;
 
     if (productModel.isCustomisable) {
-      cId = cId + productModel.titles[choosenIndex];
+      cId = cId +
+          productModel.titles[choosenIndex] +
+          productModel.prices[choosenIndex].toString();
+    } else {
+      cId = cId + productModel.mrp.toString();
     }
     if (_cartItems.containsKey(cId)) {
       _cartItems.update(
@@ -99,12 +103,8 @@ class CartProvider with ChangeNotifier {
           Map<String, dynamic> map = value.data()!['products'];
 
           map.forEach((k, v) async {
-            String pId = v['product'];
-            await _firestore.collection('products').doc(pId).get().then((item) {
-              ProductModel productModel = ProductModel.fromMap(item.data()!);
-              CartItem cartItem = CartItem.fromMap(v, productModel);
-              _cartItems.putIfAbsent(k, () => cartItem);
-            });
+            CartItem cartItem = CartItem.fromMap(v);
+            _cartItems.putIfAbsent(k, () => cartItem);
 
             notifyListeners();
           });
