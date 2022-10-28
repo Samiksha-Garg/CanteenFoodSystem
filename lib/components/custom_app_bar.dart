@@ -1,6 +1,7 @@
 import 'package:canteen_system/helper/constants.dart';
 import 'package:canteen_system/helper/size_config.dart';
 import 'package:canteen_system/providers/cart_provider.dart';
+import 'package:canteen_system/screens/cartScreen/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -46,7 +47,10 @@ AppBar customAppBar(String title) {
                 position: BadgePosition.topEnd(),
                 child: Icon(Icons.shopping_cart_outlined,
                     color: kTextColor, size: getProportionateScreenWidth(30))),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => CartScreen()));
+            },
           ),
         );
       }),

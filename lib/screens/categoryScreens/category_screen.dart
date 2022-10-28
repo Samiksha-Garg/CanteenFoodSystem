@@ -5,6 +5,7 @@ import 'package:canteen_system/helper/enums.dart';
 import 'package:canteen_system/helper/size_config.dart';
 import 'package:canteen_system/models/Products.dart';
 import 'package:canteen_system/providers/product_provider.dart';
+import 'package:canteen_system/screens/cartScreen/cart_screen.dart';
 import 'package:canteen_system/screens/categoryScreens/category_item.dart';
 import 'package:canteen_system/screens/complaint_page/Components/dropdown.dart';
 import 'package:flutter/material.dart';
@@ -71,7 +72,11 @@ class CategoryScreen extends StatelessWidget {
                       child: Icon(Icons.shopping_cart_outlined,
                           color: kTextColor,
                           size: getProportionateScreenWidth(30))),
-                  onPressed: () {},
+                  onPressed: () {
+                    print('Hi');
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => CartScreen()));
+                  },
                 ),
               );
             }),

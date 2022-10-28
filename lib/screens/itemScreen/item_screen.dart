@@ -253,7 +253,8 @@ class _ItemWidgetState extends State<ItemWidget> {
                       text: "Add to Cart",
                       press: () {
                         Provider.of<CartProvider>(context, listen: false)
-                            .addToCart(widget.productModel, quantity: qty);
+                            .addToCart(widget.productModel,
+                                quantity: qty, choosenIndex: selectedValue);
                         Navigator.pop(context);
                       }),
                 ),
