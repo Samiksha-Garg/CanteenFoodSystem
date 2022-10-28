@@ -7,6 +7,7 @@ import 'package:canteen_system/screens/complaint_page/Components/dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/src/consumer.dart';
 import 'package:provider/src/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class User extends StatelessWidget {
   const User({Key? key}) : super(key: key);
@@ -146,12 +147,20 @@ class User extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         padding: EdgeInsets.all(15),
-                        child: ImageIcon(
-                          NetworkImage(
-                              'https://cdn-icons-png.flaticon.com/512/174/174857.png'),
-                          color: Colors.blue[900],
-                          size: getProportionateScreenHeight(30),
-                        ),
+                        child:ListView(
+                          children: <Widget>[
+                            GestureDetector(
+                              onTap: _launchURL,
+                              child:  
+                              ImageIcon(
+                                NetworkImage('https://cdn-icons-png.flaticon.com/512/174/174857.png'),
+                                color: Colors.blue[900],
+                                size: getProportionateScreenHeight(30),
+                              ),
+                              
+                            )
+
+                          ],)
                       ),
                       Container(
                         height: getProportionateScreenHeight(55),
@@ -197,4 +206,8 @@ class User extends StatelessWidget {
       bottomNavigationBar: CustomBottomNavBar(),
     );
   }
+}
+_launchURL() async{
+  const url = 'https://www.linkedin.com/company/celestial-biscuit-igdtuw/mycompany/';
+  
 }
