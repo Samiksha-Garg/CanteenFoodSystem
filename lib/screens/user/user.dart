@@ -140,28 +140,22 @@ class User extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       Container(
-                        height: getProportionateScreenHeight(55),
-                        alignment: Alignment.centerLeft,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        padding: EdgeInsets.all(15),
-                        child:ListView(
-                          children: <Widget>[
-                            GestureDetector(
-                              onTap: _launchURL,
-                              child:  
-                              ImageIcon(
-                                NetworkImage('https://cdn-icons-png.flaticon.com/512/174/174857.png'),
-                                color: Colors.blue[900],
-                                size: getProportionateScreenHeight(30),
-                              ),
-                              
-                            )
-
-                          ],)
-                      ),
+                          height: getProportionateScreenHeight(55),
+                          alignment: Alignment.centerLeft,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          padding: EdgeInsets.all(15),
+                          child: GestureDetector(
+                            onTap: _launchURL,
+                            child: ImageIcon(
+                              NetworkImage(
+                                  'https://cdn-icons-png.flaticon.com/512/174/174857.png'),
+                              color: Colors.blue[900],
+                              size: getProportionateScreenHeight(30),
+                            ),
+                          )),
                       Container(
                         height: getProportionateScreenHeight(55),
                         alignment: Alignment.centerLeft,
@@ -207,7 +201,14 @@ class User extends StatelessWidget {
     );
   }
 }
-_launchURL() async{
-  const url = 'https://www.linkedin.com/company/celestial-biscuit-igdtuw/mycompany/';
+
+_launchURL() async {
+  const url ='https://www.linkedin.com/company/celestial-biscuit-igdtuw/mycompany/';
+  if (await canLaunch(url)){
+    await launch(url);
   
+  }
+  else{
+    SnackBar(content: Text("could not launch $url"));
+  }
 }
