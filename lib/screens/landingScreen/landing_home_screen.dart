@@ -1,7 +1,9 @@
 import 'package:canteen_system/helper/enums.dart';
 import 'package:canteen_system/providers/auth_service.dart';
 import 'package:canteen_system/providers/bottom_navigation_bar.dart';
+import 'package:canteen_system/providers/cart_provider.dart';
 import 'package:canteen_system/providers/product_provider.dart';
+import 'package:canteen_system/providers/user_account.dart';
 import 'package:canteen_system/screens/OrderSummary/Components/order_details.dart';
 import 'package:canteen_system/screens/complaint_page/Components/dropdown.dart';
 import 'package:canteen_system/screens/edit_details/edit_details.dart';
@@ -47,7 +49,9 @@ class _LandingHomeScreenState extends State<LandingHomeScreen> {
 
   void fetch() {
     var productProvider = Provider.of<ProductProvider>(context, listen: false);
-
+    var cartProvider = Provider.of<CartProvider>(context, listen: false);
+    var userProvider = Provider.of<UserProvider>(context, listen: false);
+    cartProvider.fetchCartItems(userProvider.user.id);
     productProvider.fetchAllProducts();
   }
 

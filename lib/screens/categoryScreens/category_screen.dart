@@ -73,7 +73,6 @@ class CategoryScreen extends StatelessWidget {
                           color: kTextColor,
                           size: getProportionateScreenWidth(30))),
                   onPressed: () {
-                    print('Hi');
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => CartScreen()));
                   },

@@ -5,6 +5,7 @@ import 'package:canteen_system/helper/constants.dart';
 import 'package:canteen_system/helper/size_config.dart';
 import 'package:canteen_system/models/Cart.dart';
 import 'package:canteen_system/providers/cart_provider.dart';
+import 'package:canteen_system/providers/user_account.dart';
 import 'package:canteen_system/screens/complaint_page/Components/dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -19,6 +20,7 @@ class CartTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var userProvider = Provider.of<UserProvider>(context, listen: false);
     return Container(
       margin: EdgeInsets.only(bottom: getProportionateScreenHeight(10)),
       height: getProportionateScreenHeight(130),
@@ -44,6 +46,8 @@ class CartTile extends StatelessWidget {
               ),
               imageUrl: cartItem.product.imageUrl,
               placeholder: (context, url) => Container(
+                height: getProportionateScreenHeight(70),
+                width: getProportionateScreenWidth(100),
                 margin: EdgeInsets.symmetric(
                     vertical: getProportionateScreenWidth(20)),
                 decoration: BoxDecoration(
@@ -97,7 +101,7 @@ class CartTile extends StatelessWidget {
                                     (cartItem.product.isCustomisable
                                         ? cartItem.product.prices[
                                             cartItem.choosenCustomisation]
-                                        : cartItem.price))
+                                        : cartItem.product.mrp))
                                 .toString() +
                             " /-",
                         style: kSubHeadingTextStyle,
@@ -134,7 +138,8 @@ class CartTile extends StatelessWidget {
                                       ),
                                     );
                                   } else {
-                                    cartProvider.decreaseQty(cartItem.cId);
+                                    cartProvider.decreaseQty(
+                                        cartItem.cId, userProvider.user.id);
                                   }
                                 },
                                 style: ElevatedButton.styleFrom(
@@ -168,7 +173,8 @@ class CartTile extends StatelessWidget {
                               ),
                               ElevatedButton(
                                 onPressed: () {
-                                  cartProvider.increaseQty(cartItem.cId);
+                                  cartProvider.increaseQty(
+                                      cartItem.cId, userProvider.user.id);
                                 },
                                 style: ElevatedButton.styleFrom(
                                     elevation: 0,
@@ -197,7 +203,7 @@ class CartTile extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 child: InkWell(
                   onTap: () {
-                    cartProvider.removeItem(cartItem.cId);
+                    cartProvider.removeItem(cartItem.cId, userProvider.user.id);
                   },
                   child: const Icon(
                     Icons.delete,

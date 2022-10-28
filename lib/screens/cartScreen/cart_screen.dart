@@ -1,5 +1,6 @@
 import 'package:canteen_system/components/custom_app_bar.dart';
 import 'package:canteen_system/components/custom_navigation_bar.dart';
+import 'package:canteen_system/components/loading_bar.dart';
 import 'package:canteen_system/helper/constants.dart';
 import 'package:canteen_system/helper/size_config.dart';
 import 'package:canteen_system/models/Cart.dart';
@@ -44,51 +45,55 @@ class CartScreen extends StatelessWidget {
           ),
         ],
       ),
-      body:
-          Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Expanded(
-          child: Padding(
-            padding: EdgeInsets.only(
-                top: getProportionateScreenHeight(15),
-                left: getProportionateScreenWidth(20),
-                right: getProportionateScreenWidth(20),
-                bottom: getProportionateScreenHeight(15)),
-            child: SingleChildScrollView(
-              child: Consumer<CartProvider>(builder: (context, cart, _) {
-                List<CartItem> itemList = cart.items.values.toList();
-                return itemList.length == 0
-                    ? Container(
-                        height: getProportionateScreenHeight(406),
-                        child: Center(child: Text('Your Cart is Empty!')),
-                      )
-                    : Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                            Text(
-                              'Your Cart (${itemList.length})',
-                              style: kHeadingTextStyle,
-                            ),
-                            SizedBox(
-                              height: getProportionateScreenHeight(10),
-                            ),
-                            ListView.builder(
-                                physics: NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: itemList.length,
-                                itemBuilder: (context, index) {
-                                  return CartTile(
-                                    cartItem: itemList[index],
-                                    index: index,
-                                  );
-                                }),
-                          ]);
-              }),
-            ),
-          ),
-          // child:
-        ),
-        PlaceOrderCard()
-      ]),
+      body: Consumer<CartProvider>(builder: (context, cart, _) {
+        List<CartItem> itemList = cart.items.values.toList();
+        return MyLoadingBar(
+          isLoading: cart.isLoading,
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                        top: getProportionateScreenHeight(15),
+                        left: getProportionateScreenWidth(20),
+                        right: getProportionateScreenWidth(20),
+                        bottom: getProportionateScreenHeight(15)),
+                    child: SingleChildScrollView(
+                      child: itemList.length == 0
+                          ? Container(
+                              height: getProportionateScreenHeight(406),
+                              child: Center(child: Text('Your Cart is Empty!')),
+                            )
+                          : Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                  Text(
+                                    'Your Cart (${itemList.length})',
+                                    style: kHeadingTextStyle,
+                                  ),
+                                  SizedBox(
+                                    height: getProportionateScreenHeight(10),
+                                  ),
+                                  ListView.builder(
+                                      physics: NeverScrollableScrollPhysics(),
+                                      shrinkWrap: true,
+                                      itemCount: itemList.length,
+                                      itemBuilder: (context, index) {
+                                        return CartTile(
+                                          cartItem: itemList[index],
+                                          index: index,
+                                        );
+                                      }),
+                                ]),
+                    ),
+                  ),
+                  // child:
+                ),
+                PlaceOrderCard()
+              ]),
+        );
+      }),
     );
   }
 }

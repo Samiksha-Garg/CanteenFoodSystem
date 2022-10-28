@@ -5,6 +5,7 @@ import 'package:canteen_system/components/loading_bar.dart';
 import 'package:canteen_system/helper/constants.dart';
 import 'package:canteen_system/models/Products.dart';
 import 'package:canteen_system/providers/cart_provider.dart';
+import 'package:canteen_system/providers/user_account.dart';
 import 'package:canteen_system/screens/itemScreen/components/ratings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -43,6 +44,7 @@ class _ItemWidgetState extends State<ItemWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var userProvider = Provider.of<UserProvider>(context, listen: false);
     List<Widget> generateRadioList(List<String> titles) {
       List<Widget> list = [];
 
@@ -253,7 +255,8 @@ class _ItemWidgetState extends State<ItemWidget> {
                       text: "Add to Cart",
                       press: () {
                         Provider.of<CartProvider>(context, listen: false)
-                            .addToCart(widget.productModel,
+                            .addToCart(
+                                widget.productModel, userProvider.user.id,
                                 quantity: qty, choosenIndex: selectedValue);
                         Navigator.pop(context);
                       }),

@@ -1,8 +1,10 @@
 import 'package:canteen_system/models/Cart.dart';
 import 'package:canteen_system/models/Products.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CartProvider with ChangeNotifier {
+  final _firestore = FirebaseFirestore.instance;
   bool isLoading = false;
   Map<String, CartItem> _cartItems = {};
 
@@ -10,8 +12,10 @@ class CartProvider with ChangeNotifier {
     return {..._cartItems};
   }
 
-  Future<void> addToCart(ProductModel productModel,
+  Future<void> addToCart(ProductModel productModel, String uId,
       {int quantity = 1, int choosenIndex = 0}) async {
+    isLoading = true;
+    notifyListeners();
     String cId = productModel.pId;
 
     if (productModel.isCustomisable) {
@@ -24,9 +28,6 @@ class CartProvider with ChangeNotifier {
                 choosenCustomisation: choosenIndex,
                 cId: existingCartItem.cId,
                 product: productModel,
-                price: productModel.isCustomisable
-                    ? productModel.prices[choosenIndex].toDouble()
-                    : productModel.mrp,
                 quantity: existingCartItem.quantity + quantity,
               ));
     } else {
@@ -36,43 +37,94 @@ class CartProvider with ChangeNotifier {
                 choosenCustomisation: choosenIndex,
                 cId: cId,
                 product: productModel,
-                price: productModel.isCustomisable
-                    ? productModel.prices[choosenIndex].toDouble()
-                    : productModel.mrp,
                 quantity: quantity,
               ));
     }
 
+    await updateDB(uId);
+    isLoading = false;
     notifyListeners();
   }
 
-  Future<void> increaseQty(String cId) async {
+  Future<void> increaseQty(String cId, String uId) async {
+    isLoading = true;
+    notifyListeners();
     _cartItems.update(
         cId,
         (existingCartItem) => CartItem(
             cId: existingCartItem.cId,
             product: existingCartItem.product,
-            price: existingCartItem.price,
             quantity: existingCartItem.quantity + 1,
             choosenCustomisation: existingCartItem.choosenCustomisation));
+    await updateDB(uId);
+    isLoading = false;
     notifyListeners();
   }
 
-  Future<void> decreaseQty(String cId) async {
+  Future<void> decreaseQty(String cId, String uId) async {
+    isLoading = true;
+    notifyListeners();
     _cartItems.update(
         cId,
         (existingCartItem) => CartItem(
             cId: existingCartItem.cId,
             product: existingCartItem.product,
-            price: existingCartItem.price,
             quantity: existingCartItem.quantity - 1,
             choosenCustomisation: existingCartItem.choosenCustomisation));
+    await updateDB(uId);
+    isLoading = false;
     notifyListeners();
   }
 
-  Future<void> removeItem(String cId) async {
+  Future<void> removeItem(String cId, String uId) async {
+    isLoading = true;
+    notifyListeners();
     _cartItems.remove(cId);
+    await updateDB(uId);
+    isLoading = false;
+    notifyListeners();
+  }
+
+  Future<void> fetchCartItems(String userId) async {
+    _cartItems.clear();
+    isLoading = true;
+    notifyListeners();
+
+    var docRef = _firestore.collection("carts").doc(userId);
+    docRef.get().then((doc) async {
+      if (!doc.exists) {
+        await _firestore.collection('carts').doc(userId).set({"products": {}});
+      } else {
+        await _firestore.collection('carts').doc(userId).get().then((value) {
+          Map<String, dynamic> map = value.data()!['products'];
+
+          map.forEach((k, v) async {
+            String pId = v['product'];
+            await _firestore.collection('products').doc(pId).get().then((item) {
+              ProductModel productModel = ProductModel.fromMap(item.data()!);
+              CartItem cartItem = CartItem.fromMap(v, productModel);
+              _cartItems.putIfAbsent(k, () => cartItem);
+            });
+
+            notifyListeners();
+          });
+        });
+      }
+    }).catchError((error) => {print("Error getting document:" + error)});
+    isLoading = false;
 
     notifyListeners();
+  }
+
+  Future<void> updateDB(String uid) async {
+    Map<String, Map<String, dynamic>> cartItems = {};
+
+    for (String mapKeys in _cartItems.keys) {
+      cartItems.putIfAbsent(mapKeys, () => _cartItems[mapKeys]!.toMap());
+    }
+    return await _firestore
+        .collection('carts')
+        .doc(uid)
+        .update({"products": cartItems});
   }
 }
