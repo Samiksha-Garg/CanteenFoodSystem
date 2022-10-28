@@ -9,11 +9,36 @@ class Payment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Scaffold(
       backgroundColor: Color.fromRGBO(48, 46, 59, 1),
-      appBar: customAppBar("Payment"),
-      bottomNavigationBar: const CustomBottomNavBar(),
+      appBar: AppBar(
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 8),
+          child: IconButton(
+            icon: Icon(Icons.arrow_back,
+                color: kTextColor, size: getProportionateScreenWidth(30)),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
+        title: Center(
+          child: Text(
+            "Payment",
+            style: kAppBarTextStyle,
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(left: 8),
+            child: IconButton(
+              icon: Icon(Icons.notifications_outlined,
+                  color: kTextColor, size: getProportionateScreenWidth(30)),
+              onPressed: () {},
+            ),
+          ),
+        ],
+      ),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -79,34 +104,34 @@ class Payment extends StatelessWidget {
                     style: kHeadingTextStyle.copyWith(color: Colors.black),
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.all(25),
-                  margin: EdgeInsets.only(bottom: 10),
-                  width: getProportionateScreenWidth(300),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Text(
-                    'Cash',
-                    textAlign: TextAlign.start,
-                    style: kHeadingTextStyle.copyWith(color: Colors.black),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.all(25),
-                  margin: EdgeInsets.only(bottom: 10),
-                  width: getProportionateScreenWidth(300),
-                  decoration: BoxDecoration(
-                    color: Color.fromRGBO(2, 51, 112, 1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Text(
-                    '+ Add Payment Option',
-                    textAlign: TextAlign.center,
-                    style: kHeadingTextStyle,
-                  ),
-                ),
+                // Container(
+                //   padding: EdgeInsets.all(25),
+                //   margin: EdgeInsets.only(bottom: 10),
+                //   width: getProportionateScreenWidth(300),
+                //   decoration: BoxDecoration(
+                //     color: Colors.white,
+                //     borderRadius: BorderRadius.circular(10),
+                //   ),
+                //   child: Text(
+                //     'Cash',
+                //     textAlign: TextAlign.start,
+                //     style: kHeadingTextStyle.copyWith(color: Colors.black),
+                //   ),
+                // ),
+                // Container(
+                //   padding: EdgeInsets.all(25),
+                //   margin: EdgeInsets.only(bottom: 10),
+                //   width: getProportionateScreenWidth(300),
+                //   decoration: BoxDecoration(
+                //     color: Color.fromRGBO(2, 51, 112, 1),
+                //     borderRadius: BorderRadius.circular(10),
+                //   ),
+                //   child: Text(
+                //     '+ Add Payment Option',
+                //     textAlign: TextAlign.center,
+                //     style: kHeadingTextStyle,
+                //   ),
+                // ),
                 SizedBox(
                   height: getProportionateScreenHeight(10),
                 ),

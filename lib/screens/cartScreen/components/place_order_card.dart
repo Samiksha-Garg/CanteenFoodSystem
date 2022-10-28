@@ -3,6 +3,7 @@ import 'package:canteen_system/helper/constants.dart';
 import 'package:canteen_system/helper/size_config.dart';
 import 'package:canteen_system/models/Cart.dart';
 import 'package:canteen_system/providers/cart_provider.dart';
+import 'package:canteen_system/screens/payment/payment.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
 import 'package:provider/src/consumer.dart';
@@ -57,7 +58,10 @@ class PlaceOrderCard extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: CustomButton(
-                    press: () {},
+                    press: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Payment()));
+                    },
                     text: "Place Order",
                   ),
                 )
