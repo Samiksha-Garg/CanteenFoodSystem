@@ -4,6 +4,8 @@ import 'package:canteen_system/helper/size_config.dart';
 import 'package:canteen_system/providers/auth_service.dart';
 import 'package:canteen_system/providers/user_account.dart';
 import 'package:canteen_system/screens/complaint_page/Components/dropdown.dart';
+import 'package:canteen_system/screens/complaint_page/complaint_page.dart';
+import 'package:canteen_system/screens/edit_details/edit_details.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/src/consumer.dart';
 import 'package:provider/src/provider.dart';
@@ -31,10 +33,10 @@ class User extends StatelessWidget {
                 height: getProportionateScreenHeight(10),
               ),
               CircleAvatar(
-                radius: getProportionateScreenWidth(104),
+                radius: getProportionateScreenWidth(94),
                 backgroundColor: Colors.orange,
                 child: CircleAvatar(
-                  radius: getProportionateScreenWidth(100),
+                  radius: getProportionateScreenWidth(90),
                   backgroundImage: const NetworkImage(
                       'https://img.freepik.com/premium-vector/black-checker-chess-square-background_350503-56.jpg?w=2000'),
                 ),
@@ -43,6 +45,11 @@ class User extends StatelessWidget {
                 height: getProportionateScreenHeight(15),
               ),
               Expanded(
+                child: InkWell(
+                  onTap: () {
+                   Navigator.push(context, MaterialPageRoute(builder: ((context) =>EditDetails() )),
+                   );
+                  },
                 child: Container(
                   width: double.infinity,
                   alignment: Alignment.center,
@@ -62,7 +69,30 @@ class User extends StatelessWidget {
                     ),
                   ),
                 ),
+              )),
+              const Divider(
+                color: Color.fromRGBO(94, 167, 255, 0.59),
+                height: 1.0,
               ),
+              Expanded(
+                child: InkWell(
+                  onTap: () {
+                   Navigator.push(context, MaterialPageRoute(builder: ((context) =>ComplaintPage() )),);
+                  },
+                child: Container(
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                 
+                  child: Text(
+                    'Give Feedback',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: getProportionateScreenWidth(20),
+                    ),
+                  ),
+                ),
+              )),
               const Divider(
                 color: Color.fromRGBO(94, 167, 255, 0.59),
                 height: 1.0,

@@ -169,10 +169,39 @@ class EditDetails extends StatelessWidget {
                 padding: EdgeInsets.symmetric(
                     horizontal: getProportionateScreenWidth(20)),
                 child: CustomButton(text: "Save Changes", press: () {}),
-              )
+              ),
+              SizedBox(
+                height: getProportionateScreenHeight(20),
+              ),
+              ElevatedButton(
+                
+                
+                  style: ElevatedButton.styleFrom(
+                  primary: Color.fromRGBO(30, 30, 42, 1), //background color of button
+                   //border width and color
+                  elevation: 3, //elevation of button
+                  shape: RoundedRectangleBorder( //to set border radius to button
+                    borderRadius: BorderRadius.circular(10)
+                  ),
+                  padding: EdgeInsets.all(20) //content padding inside button
+                ),
+                  onPressed: () {
+                  Navigator.pop(context);
+                  },
+                  child: const Text(
+                    'Go back!',
+                    style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+                  ),
+                ),
+              
+              
             ]),
           ),
+          
         ),
+          
+          
       ),
     );
   }

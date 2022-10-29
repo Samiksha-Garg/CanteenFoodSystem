@@ -124,39 +124,39 @@ class CartTile extends StatelessWidget {
                           return Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              ElevatedButton(
-                                onPressed: () {
-                                  if (cartProvider.items.values
-                                          .toList()[index]
-                                          .quantity ==
-                                      1) {
-                                    Scaffold.of(context).hideCurrentSnackBar();
-                                    Scaffold.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                            'Click on delete icon to remove'),
-                                      ),
-                                    );
-                                  } else {
-                                    cartProvider.decreaseQty(
-                                        cartItem.cId, userProvider.user.id);
-                                  }
-                                },
-                                style: ElevatedButton.styleFrom(
-                                    elevation: 0,
-                                    primary: Colors.grey,
-                                    side: BorderSide.none
-                                    // side: BorderSide(color: Colors.black, width: 1),
-                                    ),
-                                child: Text(
-                                  '-',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize:
-                                          getProportionateScreenHeight(15),
-                                      fontWeight: FontWeight.w700),
-                                ),
-                              ),
+                              // ElevatedButton(
+                              //   onPressed: () {
+                              //   //   if (cartProvider.items.values
+                              //   //           .toList()[index]
+                              //   //           .quantity ==
+                              //   //       1) {
+                              //   //     Scaffold.of(context).hideCurrentSnackBar();
+                              //   //     Scaffold.of(context).showSnackBar(
+                              //   //       SnackBar(
+                              //   //         content: Text(
+                              //   //             'Click on delete icon to remove'),
+                              //   //       ),
+                              //   //     );
+                              //   //   } else {
+                              //   //     cartProvider.decreaseQty(
+                              //   //         cartItem.cId, userProvider.user.id);
+                              //   //   }
+                              //   // },
+                              //   style: ElevatedButton.styleFrom(
+                              //       elevation: 0,
+                              //       primary: Colors.grey,
+                              //       side: BorderSide.none
+                              //       // side: BorderSide(color: Colors.black, width: 1),
+                              //       ),
+                              //   child: Text(
+                              //     '-',
+                              //     style: TextStyle(
+                              //         color: Colors.black,
+                              //         fontSize:
+                              //             getProportionateScreenHeight(15),
+                              //         fontWeight: FontWeight.w700),
+                              //   ),
+                              // ),
                               SizedBox(
                                 width: getProportionateScreenWidth(5),
                               ),
@@ -187,7 +187,7 @@ class CartTile extends StatelessWidget {
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize:
-                                          getProportionateScreenHeight(15),
+                                          getProportionateScreenHeight(5),
                                       fontWeight: FontWeight.w700),
                                 ),
                               ),
@@ -200,7 +200,7 @@ class CartTile extends StatelessWidget {
             ),
             Consumer<CartProvider>(builder: (context, cartProvider, _) {
               return Padding(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(5),
                 child: InkWell(
                   onTap: () {
                     cartProvider.removeItem(cartItem.cId, userProvider.user.id);

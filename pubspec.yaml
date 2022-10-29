@@ -50,10 +50,8 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
   provider: ^6.0.3 #for state management
-  firebase_core: ^1.21.1 #for Firebase Services
   firebase_auth: ^3.7.0 #for firebase auth services
   google_sign_in: ^5.4.1 # for Google sign in Auth Services
-  cloud_firestore: ^3.4.6 # for Firebase Cloud Firestore Services
   flutter_svg: ^1.1.4 # help us to use SVG in our app
   font_awesome_flutter: ^10.2.1
   email_validator: ^2.1.17 #for validating email
@@ -101,6 +99,9 @@ flutter:
           weight: 700
         - asset: assets/fonts/Poppins-Light.ttf
           weight: 300
+dependencies:
+  cloud_firestore: ^3.5.1
+  firebase_core: ^1.24.0
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

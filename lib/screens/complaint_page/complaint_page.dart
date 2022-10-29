@@ -20,6 +20,7 @@ class ComplaintPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: kPrimaryColor,
       body: SafeArea(
+       
         child: Padding(
           padding: EdgeInsets.all(getProportionateScreenHeight(5)),
           child: Center(
@@ -98,8 +99,11 @@ class ComplaintPage extends StatelessWidget {
                                         fontStyle: FontStyle.italic)),
                                 cursorColor: Colors.white,
                               ),
+                              
                             ),
+                            
                           ),
+                          
                           SizedBox(
                             height: getProportionateScreenHeight(10),
                           ),
@@ -127,6 +131,36 @@ class ComplaintPage extends StatelessWidget {
                             ),
                           )),
                           SizedBox(
+                height: getProportionateScreenHeight(20),
+              ),
+                          Center(
+                            
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                  primary: Color(0xffD6D5D7), //background color of button
+                   //border width and color
+                  elevation: 3, //elevation of button
+                  shape: RoundedRectangleBorder( //to set border radius to button
+                    borderRadius: BorderRadius.circular(10)
+                  ),
+                  padding: EdgeInsets.all(20) //content padding inside button
+                ),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            
+                            child: const Text(
+                              'Go back!',
+                              style: TextStyle(
+                                    
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w600
+                                    ),
+                              ),
+                            ),
+                          ),
+    
+                          SizedBox(
                             height: getProportionateScreenHeight(10),
                           )
                         ]),
@@ -149,6 +183,7 @@ class ComplaintPage extends StatelessWidget {
           ])),
         ),
       ),
+      
     );
   }
 }
