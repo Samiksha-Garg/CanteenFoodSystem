@@ -1,11 +1,28 @@
 import 'package:canteen_system/components/custom_app_bar.dart';
 import 'package:canteen_system/components/custom_navigation_bar.dart';
 import 'package:canteen_system/helper/constants.dart';
+import 'package:canteen_system/helper/enums.dart';
 import 'package:canteen_system/helper/size_config.dart';
+import 'package:canteen_system/providers/place_order.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
 
-class Payment extends StatelessWidget {
+class Payment extends StatefulWidget {
   const Payment({Key? key}) : super(key: key);
+
+  @override
+  State<Payment> createState() => _PaymentState();
+}
+
+class _PaymentState extends State<Payment> {
+  late PlaceOrder placeOrderProvider;
+
+  @override
+  void initState() {
+    placeOrderProvider = Provider.of<PlaceOrder>(context, listen: false);
+    placeOrderProvider.init(context);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,60 +65,80 @@ class Payment extends StatelessWidget {
                 SizedBox(
                   height: getProportionateScreenHeight(10),
                 ),
-                Container(
-                  padding: EdgeInsets.all(25),
-                  margin: EdgeInsets.only(bottom: 10),
-                  width: getProportionateScreenWidth(300),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Text(
-                    'Debit/Credit Card',
-                    textAlign: TextAlign.start,
-                    style: kHeadingTextStyle.copyWith(color: Colors.black),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.all(25),
-                  margin: EdgeInsets.only(bottom: 10),
-                  width: getProportionateScreenWidth(300),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Text(
-                    'GPay',
-                    textAlign: TextAlign.start,
-                    style: kHeadingTextStyle.copyWith(color: Colors.black),
+                InkWell(
+                  onTap: () {
+                    placeOrderProvider.makePayment(ModeOfPayment.Card);
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(25),
+                    margin: EdgeInsets.only(bottom: 10),
+                    width: getProportionateScreenWidth(300),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Text(
+                      'Debit/Credit Card',
+                      textAlign: TextAlign.start,
+                      style: kHeadingTextStyle.copyWith(color: Colors.black),
+                    ),
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.all(25),
-                  margin: EdgeInsets.only(bottom: 10),
-                  width: getProportionateScreenWidth(300),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Text(
-                    'Paytm',
-                    textAlign: TextAlign.start,
-                    style: kHeadingTextStyle.copyWith(color: Colors.black),
+                InkWell(
+                  onTap: () {
+                    placeOrderProvider.makePayment(ModeOfPayment.UPI);
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(25),
+                    margin: EdgeInsets.only(bottom: 10),
+                    width: getProportionateScreenWidth(300),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Text(
+                      'UPI',
+                      textAlign: TextAlign.start,
+                      style: kHeadingTextStyle.copyWith(color: Colors.black),
+                    ),
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.all(25),
-                  margin: EdgeInsets.only(bottom: 10),
-                  width: getProportionateScreenWidth(300),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
+                InkWell(
+                  onTap: () {
+                    placeOrderProvider.makePayment(ModeOfPayment.Netbanking);
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(25),
+                    margin: EdgeInsets.only(bottom: 10),
+                    width: getProportionateScreenWidth(300),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Text(
+                      'Netbanking',
+                      textAlign: TextAlign.start,
+                      style: kHeadingTextStyle.copyWith(color: Colors.black),
+                    ),
                   ),
-                  child: Text(
-                    'PhonePay',
-                    textAlign: TextAlign.start,
-                    style: kHeadingTextStyle.copyWith(color: Colors.black),
+                ),
+                InkWell(
+                  onTap: () {
+                    placeOrderProvider.makePayment(ModeOfPayment.Wallets);
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(25),
+                    margin: EdgeInsets.only(bottom: 10),
+                    width: getProportionateScreenWidth(300),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Text(
+                      'Wallet',
+                      textAlign: TextAlign.start,
+                      style: kHeadingTextStyle.copyWith(color: Colors.black),
+                    ),
                   ),
                 ),
                 // Container(

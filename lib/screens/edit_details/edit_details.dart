@@ -18,6 +18,7 @@ class EditDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+
     return Scaffold(
       backgroundColor: kPrimaryColor,
       appBar: AppBar(

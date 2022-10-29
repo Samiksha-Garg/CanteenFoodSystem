@@ -2,6 +2,7 @@ import 'package:canteen_system/helper/enums.dart';
 import 'package:canteen_system/providers/auth_service.dart';
 import 'package:canteen_system/providers/bottom_navigation_bar.dart';
 import 'package:canteen_system/providers/cart_provider.dart';
+import 'package:canteen_system/providers/order_provider.dart';
 import 'package:canteen_system/providers/product_provider.dart';
 import 'package:canteen_system/providers/user_account.dart';
 import 'package:canteen_system/screens/OrderSummary/Components/order_details.dart';
@@ -51,7 +52,9 @@ class _LandingHomeScreenState extends State<LandingHomeScreen> {
     var productProvider = Provider.of<ProductProvider>(context, listen: false);
     var cartProvider = Provider.of<CartProvider>(context, listen: false);
     var userProvider = Provider.of<UserProvider>(context, listen: false);
+    var orderProvider = Provider.of<OrderProvider>(context, listen: false);
     cartProvider.fetchCartItems(userProvider.user.id);
+    orderProvider.fetchAllOrders(userProvider.user.id);
     productProvider.fetchAllProducts();
   }
 

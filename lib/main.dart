@@ -4,9 +4,11 @@ import 'package:canteen_system/helper/theme.dart';
 import 'package:canteen_system/providers/auth_service.dart';
 import 'package:canteen_system/providers/bottom_navigation_bar.dart';
 import 'package:canteen_system/providers/cart_provider.dart';
+import 'package:canteen_system/providers/order_provider.dart';
+import 'package:canteen_system/providers/place_order.dart';
 import 'package:canteen_system/providers/product_provider.dart';
 import 'package:canteen_system/providers/user_account.dart';
-import 'package:canteen_system/screens/OrderSummary/order_summary.dart';
+import 'package:canteen_system/screens/OrderSummary/success_screen.dart';
 import 'package:canteen_system/screens/authenticationScreen/choice_screen.dart';
 import 'package:canteen_system/screens/authenticationScreen/fetching_info_screen.dart';
 import 'package:canteen_system/screens/authenticationScreen/login_screen.dart';
@@ -58,6 +60,12 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<CartProvider>(
           create: (context) => CartProvider(),
+        ),
+        ChangeNotifierProvider<PlaceOrder>(
+          create: (context) => PlaceOrder(),
+        ),
+        ChangeNotifierProvider<OrderProvider>(
+          create: (context) => OrderProvider(),
         ),
       ],
       child: MaterialApp(

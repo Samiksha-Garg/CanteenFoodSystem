@@ -19,11 +19,7 @@ class CartProvider with ChangeNotifier {
     String cId = productModel.pId;
 
     if (productModel.isCustomisable) {
-      cId = cId +
-          productModel.titles[choosenIndex] +
-          productModel.prices[choosenIndex].toString();
-    } else {
-      cId = cId + productModel.mrp.toString();
+      cId = cId + productModel.titles[choosenIndex];
     }
     if (_cartItems.containsKey(cId)) {
       _cartItems.update(
@@ -89,6 +85,16 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> clearCart(String uId) async {
+    isLoading = true;
+    notifyListeners();
+
+    _cartItems = {};
+    await updateDB(uId);
+    isLoading = false;
+    notifyListeners();
+  }
+
   Future<void> fetchCartItems(String userId) async {
     _cartItems.clear();
     isLoading = true;
@@ -103,8 +109,17 @@ class CartProvider with ChangeNotifier {
           Map<String, dynamic> map = value.data()!['products'];
 
           map.forEach((k, v) async {
-            CartItem cartItem = CartItem.fromMap(v);
-            _cartItems.putIfAbsent(k, () => cartItem);
+            String pId = v['product'];
+
+            await _firestore
+                .collection('products')
+                .doc(pId)
+                .get()
+                .then((value) {
+              ProductModel productModel = ProductModel.fromMap(value.data()!);
+              CartItem cartItem = CartItem.fromMap(v, productModel);
+              _cartItems.putIfAbsent(k, () => cartItem);
+            });
 
             notifyListeners();
           });
