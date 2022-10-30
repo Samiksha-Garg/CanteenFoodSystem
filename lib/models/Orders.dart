@@ -1,5 +1,6 @@
 import 'package:canteen_system/helper/enums.dart';
 import 'package:canteen_system/models/Cart.dart';
+import 'package:canteen_system/screens/statusScreen/status_screen.dart';
 
 class Orders {
   final String orderId;
@@ -10,6 +11,7 @@ class Orders {
   final String signature;
   final DateTime dateTime;
   final bool validated;
+  final OrderStat orderStatus;
 
   Orders(
       {required this.orderId,
@@ -19,7 +21,8 @@ class Orders {
       required this.paymentMethod,
       required this.signature,
       required this.dateTime,
-      required this.validated});
+      required this.validated,
+      required this.orderStatus});
 
   Map<String, dynamic> toMap() {
     List<Map<String, dynamic>> list = [];
@@ -35,7 +38,8 @@ class Orders {
       'paymentMethod': paymentMethod.name,
       'signature': signature,
       'dateTime': dateTime,
-      'validated': validated
+      'validated': validated,
+      'orderStatus': orderStatus.name
     };
   }
 
@@ -49,6 +53,8 @@ class Orders {
         PaymentState.values.firstWhere((e) => e.name == map['paymentStatus']);
     ModeOfPayment modeOfPayment =
         ModeOfPayment.values.firstWhere((e) => e.name == map['paymentMethod']);
+    OrderStat orderStatus =
+        OrderStat.values.firstWhere((e) => e.name == map['orderStatus']);
     return Orders(
         orderId: map['orderId'],
         cartItems: list,
@@ -57,6 +63,7 @@ class Orders {
         paymentMethod: modeOfPayment,
         signature: map['signature'],
         dateTime: map['dateTime'].toDate(),
-        validated: map['validated']);
+        validated: map['validated'],
+        orderStatus: orderStatus);
   }
 }

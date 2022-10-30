@@ -9,6 +9,7 @@ import 'package:canteen_system/screens/OrderSummary/Components/order_details.dar
 import 'package:canteen_system/screens/complaint_page/Components/dropdown.dart';
 import 'package:canteen_system/screens/edit_details/edit_details.dart';
 import 'package:canteen_system/screens/homeScreen/home_screen.dart';
+import 'package:canteen_system/screens/ordersScreen/orders_screen.dart';
 import 'package:canteen_system/screens/user/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -30,6 +31,7 @@ class _LandingHomeScreenState extends State<LandingHomeScreen> {
         return const Home();
 
       case MenuState.Order:
+        return const AllOrdersScreen();
       // return const OrderDetails();
 
       case MenuState.Settings:

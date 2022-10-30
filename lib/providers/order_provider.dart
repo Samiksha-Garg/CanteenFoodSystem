@@ -22,7 +22,8 @@ class OrderProvider with ChangeNotifier {
         paymentMethod: modeOfPayment,
         signature: "",
         dateTime: DateTime.now(),
-        validated: false);
+        validated: false,
+        orderStatus: OrderStat.Placed);
 
     await _firestore
         .collection("users")

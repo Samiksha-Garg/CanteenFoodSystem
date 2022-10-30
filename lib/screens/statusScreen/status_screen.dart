@@ -1,4 +1,6 @@
 import 'package:canteen_system/helper/constants.dart';
+import 'package:canteen_system/models/Orders.dart';
+import 'package:canteen_system/screens/ordersScreen/components/order_summary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -8,14 +10,42 @@ import '../../components/custom_navigation_bar.dart';
 import '../../helper/size_config.dart';
 
 class OrderStatus extends StatelessWidget {
-  const OrderStatus({Key? key}) : super(key: key);
+  const OrderStatus({Key? key, required this.orders, required this.total})
+      : super(key: key);
 
+  final Orders orders;
+  final double total;
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Scaffold(
-      appBar: customAppBar("Status"),
-      bottomNavigationBar: const CustomBottomNavBar(),
+      appBar: AppBar(
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 8),
+          child: IconButton(
+            icon: Icon(Icons.arrow_back,
+                color: kTextColor, size: getProportionateScreenWidth(30)),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
+        title: Center(
+          child: Text(
+            "Status",
+            style: kAppBarTextStyle,
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(left: 8),
+            child: IconButton(
+              icon: Icon(Icons.notifications_outlined,
+                  color: kTextColor, size: getProportionateScreenWidth(30)),
+              onPressed: () {},
+            ),
+          ),
+        ],
+      ),
       body: SafeArea(
           child: Container(
         width: double.infinity,
@@ -113,12 +143,21 @@ class OrderStatus extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: EdgeInsets.all(20),
-              child: Text(
-                'View your order',
-                style: kSubHeadingTextStyle.copyWith(
-                    decoration: TextDecoration.underline),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: ((context) =>
+                            OrderSummary(orders: orders, total: total))));
+              },
+              child: Padding(
+                padding: EdgeInsets.all(20),
+                child: Text(
+                  'View your order',
+                  style: kSubHeadingTextStyle.copyWith(
+                      decoration: TextDecoration.underline),
+                ),
               ),
             )
           ],
