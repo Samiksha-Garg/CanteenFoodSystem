@@ -4,9 +4,9 @@ import 'package:canteen_system/helper/size_config.dart';
 import 'package:flutter/material.dart';
 
 class BillDetails extends StatelessWidget {
-  const BillDetails({
-    Key? key,
-  }) : super(key: key);
+  const BillDetails({Key? key, required this.totalCost}) : super(key: key);
+
+  final double totalCost;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class BillDetails extends StatelessWidget {
                     textAlign: TextAlign.start,
                     style: kHeadingTextStyle.copyWith(
                         fontSize: getProportionateScreenWidth(12))),
-                Text("\u{20B9} 104.0",
+                Text("\u{20B9} $totalCost",
                     style: kHeadingTextStyle.copyWith(
                         fontSize: getProportionateScreenWidth(12))),
               ]),
@@ -59,7 +59,7 @@ class BillDetails extends StatelessWidget {
                     textAlign: TextAlign.start,
                     style: kHeadingTextStyle.copyWith(
                         fontSize: getProportionateScreenWidth(12))),
-                Text("\u{20B9} 104.0",
+                Text("\u{20B9} $totalCost",
                     textAlign: TextAlign.end,
                     style: kHeadingTextStyle.copyWith(
                         fontSize: getProportionateScreenWidth(12))),

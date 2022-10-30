@@ -1,6 +1,8 @@
 import 'package:canteen_system/helper/enums.dart';
 import 'package:canteen_system/helper/size_config.dart';
 import 'package:canteen_system/helper/theme.dart';
+import 'package:canteen_system/models/Cart.dart';
+import 'package:canteen_system/models/Products.dart';
 import 'package:canteen_system/providers/auth_service.dart';
 import 'package:canteen_system/providers/bottom_navigation_bar.dart';
 import 'package:canteen_system/providers/cart_provider.dart';
@@ -81,6 +83,30 @@ class MyApp extends StatelessWidget {
 
                 case Status.Authenticated:
                   return const LandingHomeScreen();
+                // return
+                // SuccessScreen(
+                //     cartItems: [
+                //       CartItem(
+                //           product: ProductModel(
+                //               pId: "",
+                //               imageUrl: "",
+                //               mrp: 100,
+                //               name: "Hello",
+                //               brand: "Hi",
+                //               category: Categories.Beverages,
+                //               ratings: 3,
+                //               customisableTitle: "",
+                //               isCustomisable: false,
+                //               prices: [],
+                //               titles: []),
+                //           quantity: 3,
+                //           cId: "",
+                //           choosenCustomisation: 0)
+                //     ],
+                //     total: 0,
+                //     oId: "",
+                //     dateTime: DateTime.now(),
+                //     modeOfPayment: ModeOfPayment.UPI);
 
                 case Status.Authenticating:
                   return const SplashScreen();

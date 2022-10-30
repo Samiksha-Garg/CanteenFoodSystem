@@ -30,7 +30,7 @@ class _LandingHomeScreenState extends State<LandingHomeScreen> {
         return const Home();
 
       case MenuState.Order:
-        return const OrderDetails();
+      // return const OrderDetails();
 
       case MenuState.Settings:
         return const User();

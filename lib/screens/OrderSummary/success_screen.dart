@@ -1,6 +1,7 @@
 import 'package:canteen_system/components/custom_app_bar.dart';
 import 'package:canteen_system/components/custom_navigation_bar.dart';
 import 'package:canteen_system/helper/constants.dart';
+import 'package:canteen_system/helper/enums.dart';
 import 'package:canteen_system/helper/size_config.dart';
 import 'package:canteen_system/models/Cart.dart';
 import 'package:canteen_system/screens/OrderSummary/Components/bill_details.dart';
@@ -16,16 +17,32 @@ import 'package:flutter/material.dart';
 import '../../components/custom_button.dart';
 
 class SuccessScreen extends StatelessWidget {
-  const SuccessScreen({Key? key}) : super(key: key);
+  const SuccessScreen(
+      {Key? key,
+      required this.cartItems,
+      required this.total,
+      required this.oId,
+      required this.dateTime,
+      required this.modeOfPayment})
+      : super(key: key);
+
+  final List<CartItem> cartItems;
+  final double total;
+  final String oId;
+  final ModeOfPayment modeOfPayment;
+  final DateTime dateTime;
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
         future: Future.delayed(
-          const Duration(seconds: 5),
+          const Duration(seconds: 10),
           () {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => LandingHomeScreen()));
+            Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(
+                  builder: (context) => LandingHomeScreen(),
+                ),
+                (Route<dynamic> route) => false);
           },
         ),
         builder: (context, snapshot) {
@@ -99,29 +116,29 @@ class SuccessScreen extends StatelessWidget {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
-                                Text('1 item in this order',
+                                Text('${cartItems.length} item in this order',
                                     textAlign: TextAlign.center,
                                     style: kHeadingTextStyle),
+                                ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  itemCount: cartItems.length,
+                                  itemBuilder: (context, index) {
+                                    return OrderTile(
+                                        cartItem: cartItems[index]);
+                                  },
+                                ),
+                                BillDetails(
+                                  totalCost: total,
+                                ),
                                 SizedBox(
                                   height: getProportionateScreenHeight(20),
                                 ),
-                                OrderTile(),
-                                SizedBox(
-                                  height: getProportionateScreenHeight(20),
+                                OrderDetails(
+                                  modeOfPayment: modeOfPayment,
+                                  oId: oId,
+                                  dateTime: dateTime,
                                 ),
-                                OrderTile(),
-                                SizedBox(
-                                  height: getProportionateScreenHeight(20),
-                                ),
-                                OrderTile(),
-                                SizedBox(
-                                  height: getProportionateScreenHeight(20),
-                                ),
-                                BillDetails(),
-                                SizedBox(
-                                  height: getProportionateScreenHeight(20),
-                                ),
-                                OrderDetails(),
                               ],
                             ),
                           ),

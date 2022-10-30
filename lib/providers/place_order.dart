@@ -19,6 +19,8 @@ class PlaceOrder with ChangeNotifier {
   bool paymentInitiated = false;
   late UserModel _user;
   late String _orderId;
+  late double _total;
+  late ModeOfPayment _modeOfPayment;
 
   Map<dynamic, dynamic> getMethods(ModeOfPayment modeOfPayment) {
     if (modeOfPayment == ModeOfPayment.Card) {
@@ -103,14 +105,18 @@ class PlaceOrder with ChangeNotifier {
 
     double totalCost = 0;
     Map<dynamic, dynamic> options = getMethods(modeOfPayment);
+    _modeOfPayment = modeOfPayment;
 
     for (var cartItem in cartItems) {
       if (cartItem.product.isCustomisable) {
-        totalCost += cartItem.product.prices[cartItem.choosenCustomisation];
+        totalCost += (cartItem.product.prices[cartItem.choosenCustomisation] *
+            cartItem.quantity);
       } else {
-        totalCost += cartItem.product.mrp;
+        totalCost += (cartItem.product.mrp * cartItem.quantity);
       }
     }
+
+    _total = totalCost;
 
     var razorpayOptions = {
       'key': 'rzp_test_S9Ux6EudFbcRZu',
@@ -147,13 +153,19 @@ class PlaceOrder with ChangeNotifier {
   }
 
   Future<void> _handlePaymentSuccess(PaymentSuccessResponse response) async {
-    // Navigator.pushNamed(_context, SuccessPayment.routeName, arguments: {
-    //     "totalAmount": _subscriptionModel.amount.toString(),
-    //     "transactionNumber": response.paymentId,
-    //     "OrderId": _subscriptionModel.subId,
-    //   });
     Navigator.push(
-        _context, MaterialPageRoute(builder: (context) => SuccessScreen()));
+        _context,
+        MaterialPageRoute(
+            builder: (context) => SuccessScreen(
+                  oId: _orderId,
+                  total: _total,
+                  dateTime: DateTime.now(),
+                  modeOfPayment: _modeOfPayment,
+                  cartItems: Provider.of<CartProvider>(_context, listen: false)
+                      .items
+                      .values
+                      .toList(),
+                )));
     print("Success");
 
     await Provider.of<OrderProvider>(_context, listen: false)

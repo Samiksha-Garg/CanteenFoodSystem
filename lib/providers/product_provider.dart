@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ProductProvider with ChangeNotifier {
-  bool isLoading = true;
+  bool isLoading = false;
   List<ProductModel> _products = [];
   final _firestore = FirebaseFirestore.instance;
 
@@ -23,21 +23,26 @@ class ProductProvider with ChangeNotifier {
   // }
 
   Future<void> fetchAllProducts() async {
-    _products.clear();
-    isLoading = false;
-    notifyListeners();
+    if (isLoading == false) {
+      _products.clear();
+      isLoading = true;
+      notifyListeners();
 
-    await _firestore.collection('products').get().then((value) {
-      for (var item in value.docs) {
-        var eachProduct = ProductModel.fromMap(item.data());
+      await _firestore.collection('products').get().then((value) {
+        for (var item in value.docs) {
+          var eachProduct = ProductModel.fromMap(item.data());
 
-        _products.add(eachProduct);
-      }
+          _products.add(eachProduct);
+        }
+        isLoading = false;
+        notifyListeners();
+      }).catchError((e) {
+        print("Error in fetchin products from firestore $e ");
+      });
+
       isLoading = false;
       notifyListeners();
-    }).catchError((e) {
-      print("Error in fetchin products from firestore $e ");
-    });
+    }
   }
 
   Future<List<ProductModel>> fetchCategoriesProduct(Categories category) async {

@@ -58,7 +58,9 @@ class FailureScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.all(getProportionateScreenWidth(50)),
                   child: CustomButton(
-                    press: () {},
+                    press: () {
+                      Navigator.pop(context);
+                    },
                     text: "Please try again",
                   ),
                 ),

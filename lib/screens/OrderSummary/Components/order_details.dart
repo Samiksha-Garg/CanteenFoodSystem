@@ -1,12 +1,21 @@
 import 'package:canteen_system/components/custom_button.dart';
 import 'package:canteen_system/helper/constants.dart';
+import 'package:canteen_system/helper/enums.dart';
 import 'package:canteen_system/helper/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class OrderDetails extends StatelessWidget {
-  const OrderDetails({
-    Key? key,
-  }) : super(key: key);
+  const OrderDetails(
+      {Key? key,
+      required this.modeOfPayment,
+      required this.oId,
+      required this.dateTime})
+      : super(key: key);
+
+  final ModeOfPayment modeOfPayment;
+  final String oId;
+  final DateTime dateTime;
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +45,12 @@ class OrderDetails extends StatelessWidget {
                 Text("Order ID",
                     style: kHeadingTextStyle.copyWith(
                         fontSize: getProportionateScreenWidth(12))),
-                Text("IGDTUW0057",
-                    textAlign: TextAlign.end,
-                    style: kHeadingTextStyle.copyWith(
-                        fontSize: getProportionateScreenWidth(12))),
+                Expanded(
+                  child: Text(oId,
+                      textAlign: TextAlign.end,
+                      style: kHeadingTextStyle.copyWith(
+                          fontSize: getProportionateScreenWidth(12))),
+                ),
               ]),
               Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -49,7 +60,7 @@ class OrderDetails extends StatelessWidget {
                         textAlign: TextAlign.start,
                         style: kHeadingTextStyle.copyWith(
                             fontSize: getProportionateScreenWidth(12))),
-                    Text("Cash On Delivery",
+                    Text(modeOfPayment.name,
                         textAlign: TextAlign.end,
                         style: kHeadingTextStyle.copyWith(
                             fontSize: getProportionateScreenWidth(12))),
@@ -59,7 +70,7 @@ class OrderDetails extends StatelessWidget {
                     textAlign: TextAlign.start,
                     style: kHeadingTextStyle.copyWith(
                         fontSize: getProportionateScreenWidth(12))),
-                Text("Placed Yesterday,1:01pm",
+                Text(DateFormat('yyyy-MM-dd – kk:mm').format(dateTime),
                     textAlign: TextAlign.end,
                     style: kHeadingTextStyle.copyWith(
                         fontSize: getProportionateScreenWidth(12))),

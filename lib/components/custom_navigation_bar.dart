@@ -74,7 +74,7 @@ class CustomBottomNavBar extends StatelessWidget {
                       },
                     ),
                     Text(
-                      'Order',
+                      'Orders',
                       style: TextStyle(
                           color: provider.currentIndex == 1
                               ? Colors.pink[100]
