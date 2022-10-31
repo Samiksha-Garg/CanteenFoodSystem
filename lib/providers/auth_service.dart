@@ -31,10 +31,10 @@ class Authentication with ChangeNotifier {
   }
 
   Future signOut() async {
-    _auth.signOut();
-    _status = Status.Unauthenticated;
     Provider.of<BottomNavigationBarProvider>(_context, listen: false)
         .toggleTabs(0);
+    _auth.signOut();
+    _status = Status.Unauthenticated;
     notifyListeners();
   }
 
