@@ -11,11 +11,13 @@ import 'package:canteen_system/providers/place_order.dart';
 import 'package:canteen_system/providers/product_provider.dart';
 import 'package:canteen_system/providers/user_account.dart';
 import 'package:canteen_system/screens/OrderSummary/success_screen.dart';
+import 'package:canteen_system/screens/adminItemScreen/adminItem.dart';
 import 'package:canteen_system/screens/authenticationScreen/choice_screen.dart';
 import 'package:canteen_system/screens/authenticationScreen/fetching_info_screen.dart';
 import 'package:canteen_system/screens/authenticationScreen/login_screen.dart';
 import 'package:canteen_system/screens/authenticationScreen/sign_up_screen.dart';
 import 'package:canteen_system/screens/cartScreen/cart_screen.dart';
+import 'package:canteen_system/screens/complaintScreen/complaint_screen.dart';
 import 'package:canteen_system/screens/failureScreen/failure_screen.dart';
 import 'package:canteen_system/screens/itemScreen/item_screen.dart';
 import 'package:canteen_system/screens/landingScreen/landing_home_screen.dart';
@@ -82,7 +84,7 @@ class MyApp extends StatelessWidget {
                   return const SplashScreen();
 
                 case Status.Authenticated:
-                  return const LandingHomeScreen();
+                  return adminItemScreen();
                 // return
                 // SuccessScreen(
                 //     cartItems: [
