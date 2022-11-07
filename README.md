@@ -1,16 +1,15 @@
-# canteen_system
+# Space Canteen
 
-A new Flutter project.
+Space Canteen, is an online food ordering system for IGDTUW Canteen. It enables end users to register online, select the food from e-menu card and order food along with making safe online payment. 
 
-## Getting Started
+## Problems it solves :
+- It efficiently manages student crowd, especially during lunch hour.
+- Allows Canteen admin to manage payment and order preparation in a efficacious way, which in turn saves time and hassel.
+- Canteen admin can also update about the available food, making it easier for users to make informed decision.
 
-This project is a starting point for a Flutter application.
+# Built With :
+* [![Next][Next.js]][Next-url]
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[Next.js]: https://img.shields.io/endpoint?label=Flutter&logo=Flutter&style=for-the-badge
