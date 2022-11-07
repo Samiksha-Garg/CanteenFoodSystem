@@ -126,21 +126,21 @@ class CartTile extends StatelessWidget {
                             children: [
                               ElevatedButton(
                                 onPressed: () {
-                                  if (cartProvider.items.values
-                                          .toList()[index]
-                                          .quantity ==
-                                      1) {
-                                    Scaffold.of(context).hideCurrentSnackBar();
-                                    Scaffold.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                            'Click on delete icon to remove'),
-                                      ),
-                                    );
-                                  } else {
-                                    cartProvider.decreaseQty(
-                                        cartItem.cId, userProvider.user.id);
-                                  }
+                                  // if (cartProvider.items.values
+                                  //         .toList()[index]
+                                  //         .quantity ==
+                                  //     1) {
+                                  //   Scaffold.of(context).hideCurrentSnackBar();
+                                  //   Scaffold.of(context).showSnackBar(
+                                  //     SnackBar(
+                                  //       content: Text(
+                                  //           'Click on delete icon to remove'),
+                                  //     ),
+                                  //   );
+                                  // } else {
+                                  //   cartProvider.decreaseQty(
+                                  //       cartItem.cId, userProvider.user.id);
+                                  // }
                                 },
                                 style: ElevatedButton.styleFrom(
                                     elevation: 0,
