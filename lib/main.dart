@@ -83,30 +83,6 @@ class MyApp extends StatelessWidget {
 
                 case Status.Authenticated:
                   return const LandingHomeScreen();
-                // return
-                // SuccessScreen(
-                //     cartItems: [
-                //       CartItem(
-                //           product: ProductModel(
-                //               pId: "",
-                //               imageUrl: "",
-                //               mrp: 100,
-                //               name: "Hello",
-                //               brand: "Hi",
-                //               category: Categories.Beverages,
-                //               ratings: 3,
-                //               customisableTitle: "",
-                //               isCustomisable: false,
-                //               prices: [],
-                //               titles: []),
-                //           quantity: 3,
-                //           cId: "",
-                //           choosenCustomisation: 0)
-                //     ],
-                //     total: 0,
-                //     oId: "",
-                //     dateTime: DateTime.now(),
-                //     modeOfPayment: ModeOfPayment.UPI);
 
                 case Status.Authenticating:
                   return const SplashScreen();

@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/src/provider.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../helper/enums.dart';
 
 class Authentication with ChangeNotifier {
   late FirebaseAuth _auth;
   Status _status = Status.Uninitialized;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
   Status get status => _status;
   late User _user;
   late BuildContext _context;
@@ -67,6 +69,58 @@ class Authentication with ChangeNotifier {
       notifyListeners();
 
       return false;
+    }
+  }
+
+  Future<String> logInWithGoogle() async {
+    // final temp = deepLinkRepo?.referrerCode.value ?? '';
+    // print(temp);
+    try {
+      _status = Status.Authenticating;
+      notifyListeners();
+      final googleUser = await _googleSignIn.signIn();
+
+      final googleAuth = await googleUser?.authentication;
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+      UserCredential userCredential =
+          await _auth.signInWithCredential(credential);
+      var doc = await firebaseFirestore
+          .collection("users")
+          .doc(userCredential.user?.uid)
+          .get();
+      if (!doc.exists) {
+        await firebaseFirestore
+            .collection("users")
+            .doc(userCredential.user?.uid)
+            .set({
+          "name": userCredential.user?.displayName,
+          "email": userCredential.user?.email,
+          "id": userCredential.user?.uid
+        });
+      }
+
+      return "Success";
+    } catch (e) {
+      _status = Status.Unauthenticated;
+      notifyListeners();
+      return e.toString();
+    }
+  }
+
+  Future<String> forgetPassword({
+    required String email,
+    required BuildContext context,
+  }) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+      return "Success";
+    } on FirebaseAuthException catch (e) {
+      return e.message.toString();
+    } catch (e) {
+      return e.toString();
     }
   }
 
