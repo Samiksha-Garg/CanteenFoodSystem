@@ -1,4 +1,6 @@
+import 'package:canteen_system/adminScreens/Order/order.dart';
 import 'package:canteen_system/helper/size_config.dart';
+import 'package:canteen_system/screens/adminItemScreen/adminItem.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
@@ -77,21 +79,30 @@ class AdminHomeScreen extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(
                     horizontal: getProportionateScreenWidth(20)),
-                child: Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.symmetric(
-                      horizontal: getProportionateScreenWidth(10),
-                      vertical: getProportionateScreenHeight(20)),
-                  decoration: BoxDecoration(
-                    color: Color(0xffD7D7FB),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Text(
-                    "Orders",
-                    textAlign: TextAlign.center,
-                    style: kHeadingTextStyle.copyWith(
-                        color: Colors.black,
-                        fontSize: getProportionateScreenWidth(35)),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => OrderScreen(),
+                        ));
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.symmetric(
+                        horizontal: getProportionateScreenWidth(10),
+                        vertical: getProportionateScreenHeight(20)),
+                    decoration: BoxDecoration(
+                      color: Color(0xffD7D7FB),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Text(
+                      "Orders",
+                      textAlign: TextAlign.center,
+                      style: kHeadingTextStyle.copyWith(
+                          color: Colors.black,
+                          fontSize: getProportionateScreenWidth(35)),
+                    ),
                   ),
                 ),
               ),
@@ -101,21 +112,30 @@ class AdminHomeScreen extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(
                     horizontal: getProportionateScreenWidth(20)),
-                child: Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.symmetric(
-                      horizontal: getProportionateScreenWidth(10),
-                      vertical: getProportionateScreenHeight(20)),
-                  decoration: BoxDecoration(
-                    color: Color(0xff5A6BEA),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Text(
-                    "Items",
-                    textAlign: TextAlign.center,
-                    style: kHeadingTextStyle.copyWith(
-                        color: Colors.black,
-                        fontSize: getProportionateScreenWidth(35)),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AdminItemScreen()),
+                    );
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.symmetric(
+                        horizontal: getProportionateScreenWidth(10),
+                        vertical: getProportionateScreenHeight(20)),
+                    decoration: BoxDecoration(
+                      color: Color(0xff5A6BEA),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Text(
+                      "Items",
+                      textAlign: TextAlign.center,
+                      style: kHeadingTextStyle.copyWith(
+                          color: Colors.black,
+                          fontSize: getProportionateScreenWidth(35)),
+                    ),
                   ),
                 ),
               ),

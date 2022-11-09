@@ -8,6 +8,7 @@ import 'package:canteen_system/screens/cartScreen/components/place_order_card.da
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import '../../components/custom_button.dart';
+
 class OrderScreen extends StatelessWidget {
   const OrderScreen({Key? key}) : super(key: key);
 
@@ -17,8 +18,57 @@ class OrderScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Color.fromRGBO(48, 46, 59, 1),
-      appBar: customAppBar("Orders"),
-      bottomNavigationBar: const CustomBottomNavBar(),
+      appBar: AppBar(
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 8),
+          child: IconButton(
+            icon: Icon(Icons.arrow_back,
+                color: kTextColor, size: getProportionateScreenWidth(30)),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
+        title: Center(
+          child: Text(
+            "Orders",
+            style: kAppBarTextStyle,
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(left: 8),
+            child: IconButton(
+              icon: Icon(Icons.notifications_outlined,
+                  color: kTextColor, size: getProportionateScreenWidth(30)),
+              onPressed: () {},
+            ),
+          ),
+          // Consumer<CartProvider>(builder: (context, cartProvider, _) {
+          //   return Padding(
+          //     padding: const EdgeInsets.only(right: 10),
+          //     child: IconButton(
+          //       icon: Badge(
+          //           badgeContent: Text(
+          //             cartProvider.items.length.toString(),
+          //             style: const TextStyle(color: Colors.black),
+          //           ),
+          //           animationDuration: Duration(milliseconds: 300),
+          //           badgeColor: Colors.white,
+          //           position: BadgePosition.topEnd(),
+          //           child: Icon(Icons.shopping_cart_outlined,
+          //               color: kTextColor,
+          //               size: getProportionateScreenWidth(30))),
+          //       onPressed: () {
+          //         Navigator.push(context,
+          //             MaterialPageRoute(builder: (context) => CartScreen()));
+          //       },
+          //     ),
+          //   );
+          // }),
+        ],
+      ),
+      // bottomNavigationBar: const CustomBottomNavBar(),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(
@@ -135,9 +185,8 @@ class OrderScreen extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(
-                    
-                    bottom: getProportionateScreenHeight(5)),
+                padding:
+                    EdgeInsets.only(bottom: getProportionateScreenHeight(5)),
                 child: Container(
                     decoration: BoxDecoration(
                         color: Color.fromRGBO(68, 64, 77, 1),

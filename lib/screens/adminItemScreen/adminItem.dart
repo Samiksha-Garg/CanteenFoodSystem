@@ -16,7 +16,7 @@ import '../../helper/size_config.dart';
 // String sheepUrl = 'https://i.stack.imgur.com/wKzo8.png';
 // String goatUrl = 'https://i.stack.imgur.com/Qt4JP.png';
 
-class adminItemScreen extends StatelessWidget {
+class AdminItemScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
