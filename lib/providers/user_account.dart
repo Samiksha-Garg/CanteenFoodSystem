@@ -10,7 +10,7 @@ class UserProvider with ChangeNotifier {
   bool isLoading = false;
   late BuildContext _context;
   final _firestore = FirebaseFirestore.instance;
-  UserModel _user = UserModel(id: "", name: "", email: "");
+  UserModel _user = UserModel(id: "", name: "", email: "", role: "");
 
   UserModel get user => _user;
   set setContext(BuildContext context) {

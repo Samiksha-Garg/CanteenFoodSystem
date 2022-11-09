@@ -62,7 +62,12 @@ class Authentication with ChangeNotifier {
       await firebaseFirestore
           .collection("users")
           .doc(userCredential.user?.uid)
-          .set({"name": name, "email": email, "id": userCredential.user?.uid});
+          .set({
+        "name": name,
+        "email": email,
+        "id": userCredential.user?.uid,
+        "role": "customer"
+      });
       return true;
     } catch (e) {
       _status = Status.Unauthenticated;
@@ -98,7 +103,8 @@ class Authentication with ChangeNotifier {
             .set({
           "name": userCredential.user?.displayName,
           "email": userCredential.user?.email,
-          "id": userCredential.user?.uid
+          "id": userCredential.user?.uid,
+          "role": "customer"
         });
       }
 

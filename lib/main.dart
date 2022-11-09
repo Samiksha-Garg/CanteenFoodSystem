@@ -1,3 +1,4 @@
+import 'package:canteen_system/adminScreens/admin_main_screen.dart';
 import 'package:canteen_system/helper/enums.dart';
 import 'package:canteen_system/helper/size_config.dart';
 import 'package:canteen_system/helper/theme.dart';
@@ -82,7 +83,12 @@ class MyApp extends StatelessWidget {
                   return const SplashScreen();
 
                 case Status.Authenticated:
-                  return const LandingHomeScreen();
+                  return Provider.of<UserProvider>(context, listen: false)
+                              .user
+                              .role ==
+                          "customer"
+                      ? const LandingHomeScreen()
+                      : AdminHomeScreen();
 
                 case Status.Authenticating:
                   return const SplashScreen();
